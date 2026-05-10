@@ -1,0 +1,17 @@
+@page "/book/{bookId}"
+@rendermode InteractiveServer
+
+<PageTitle>Book</PageTitle>
+
+<h1>Book - @bookId</h1>
+
+
+
+@code {
+    
+    [Parameter]
+    public string? bookId { get; set; }
+  
+
+    
+}
