@@ -441,6 +441,7 @@ Components/
   BestSellers.razor
   BookCard.razor
   CustomerTestimonials.razor
+  HomeHero.razor
   SearchForm.razor
  Pages/
   About.razor
