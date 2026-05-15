@@ -81,5 +81,7 @@ c:\Users\schir\Documents\Projects\Blazor Projects\BookShopApp\BookShop\obj\Debug
 c:\Users\schir\Documents\Projects\Blazor Projects\BookShopApp\BookShop\obj\Debug\net10.0\ref\BookShop.dll
 C:\Users\schir\Documents\Projects\Blazor Projects\BookShopApp\BookShop\obj\Debug\net10.0\scopedcss\Components\Other\HomeHero.razor.rz.scp.css
 C:\Users\schir\Documents\Projects\Blazor Projects\BookShopApp\BookShop\obj\Debug\net10.0\scopedcss\Components\Other\SearchForm.razor.rz.scp.css
-C:\Users\schir\Documents\Projects\Blazor Projects\BookShopApp\BookShop\obj\Debug\net10.0\compressed\afqr9sf92u-{0}-ju6f14ydv5-ju6f14ydv5.gz
-C:\Users\schir\Documents\Projects\Blazor Projects\BookShopApp\BookShop\obj\Debug\net10.0\compressed\6t3r3alxej-{0}-ju6f14ydv5-ju6f14ydv5.gz
+C:\Users\schir\Documents\Projects\Blazor Projects\BookShopApp\BookShop\obj\Debug\net10.0\BookShop.sourcelink.json
+C:\Users\schir\Documents\Projects\Blazor Projects\BookShopApp\BookShop\obj\Debug\net10.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
+C:\Users\schir\Documents\Projects\Blazor Projects\BookShopApp\BookShop\obj\Debug\net10.0\compressed\afqr9sf92u-{0}-bh863jbbva-bh863jbbva.gz
+C:\Users\schir\Documents\Projects\Blazor Projects\BookShopApp\BookShop\obj\Debug\net10.0\compressed\6t3r3alxej-{0}-bh863jbbva-bh863jbbva.gz
