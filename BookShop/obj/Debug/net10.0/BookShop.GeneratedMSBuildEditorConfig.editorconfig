@@ -42,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xPdGhlclxCb29rQ2FyZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/schir/Documents/Projects/Blazor Projects/BookShopApp/BookShop/Components/Other/BooksFilters.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xPdGhlclxCb29rc0ZpbHRlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/schir/Documents/Projects/Blazor Projects/BookShopApp/BookShop/Components/Other/CustomerTestimonials.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xPdGhlclxDdXN0b21lclRlc3RpbW9uaWFscy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
