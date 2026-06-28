@@ -25,6 +25,8 @@
 ### Books Page
 
 - Users can view a list of books on the page
+- TODO: Implement pagnation
+
 - There is a search and filter section
 
 - Users can search by author name and by book title
@@ -43,6 +45,9 @@
 
 - Users can view a book's details
 
+- Users can select the image to show on the large image view
+- TODO: Implement logic to view image on the large image view
+
 - Clicking on the "Add to Basket" button add a book to the basket
 - TODO: Add logic to add a book to the basket
 
@@ -52,3 +57,15 @@
 - User can view customer reviews
 - Users can click a button to load more customer review
 - TODO: Implement logic to load more review
+
+### Author Page
+
+- Users can view author details
+
+- Users can click the "Follow this author" button to follow the author
+- TODO: Implement logic to follow author
+
+- Users can view the authors biography
+
+- Users can view the authors publications
+- TODO: Implement pagnation

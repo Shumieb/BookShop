@@ -43,7 +43,7 @@ namespace BookShop.Models
         [Required(ErrorMessage = "Please choose a category.")]
         public CategoryModel Category { get; set; }
 
-        public List<BookTagModel> Tags { get; set; } = new();
+        public List<TagModel> BookTags { get; set; } = new();
 
         public List<string> BookImageUrls { get; set; } = new();
     }
