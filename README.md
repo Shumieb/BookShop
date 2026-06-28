@@ -14,3 +14,9 @@
 - Clicking on the "Add to Basket" button add a book to the basket
 - TODO: Add logic to add a book to the basket
 - When clicked the "View all Books" buttons take you to the books page
+
+- Users can view 3 random customer review
+
+### Books Page
+
+-

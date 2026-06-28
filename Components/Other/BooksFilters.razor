@@ -1,16 +1,36 @@
-@rendermode InteractiveServer
+<hr>
+<div>
+    <BookFilterItem labelName="Best Sellers"/>
+    <BookFilterItem labelName="Featured"/>
+    <BookFilterItem labelName="On Sale"/>
+</div>
 
-<section class="container mb-4">
-    <div class="d-flex justify-content-center">
-        <button class="btn btn-success mx-2 fs-5">All</button>
-        <button class="btn btn-success mx-2 fs-5">Best Sellers</button>
-        <button class="btn btn-success mx-2 fs-5">Most Viewed</button>
-        <button class="btn btn-success mx-2 fs-5">New</button>
-    </div>
-    <div class="d-flex justify-content-center my-3">
-        <button class="btn btn-success mx-2">Fiction</button>
-        <button class="btn btn-success mx-2">Romance</button>
-        <button class="btn btn-success mx-2">Drama</button>
-        <button class="btn btn-success mx-2">Kids</button>
-    </div>                
-</section>
+<hr>
+<div>
+    <p class="fs-5 text-secondary">By Author (6/20)</p>
+    <BookFilterItem labelName="Author1 Name"/>
+    <BookFilterItem labelName="Author2 Name"/>
+    <BookFilterItem labelName="Author3 Name"/>
+    <BookFilterItem labelName="Author4 Name"/>
+    <BookFilterItem labelName="Author5 Name"/>
+    <BookFilterItem labelName="Author6 Name"/>
+    <button class="border-0 bg-transparent text-decoration-underline fs-5 py-2">View All Authors</button>
+    
+</div>
+
+<hr>
+<div>
+    <p class="fs-5 text-secondary">By Category (6/15)</p>
+    <BookFilterItem labelName="Category1 Name"/>
+    <BookFilterItem labelName="Category2 Name"/>
+    <BookFilterItem labelName="Category3 Name"/>
+    <BookFilterItem labelName="Category4 Name"/>
+    <BookFilterItem labelName="Category5 Name"/>
+    <BookFilterItem labelName="Category6 Name"/>
+    <button class="border-0 bg-transparent text-decoration-underline fs-5 py-2">View All Categories</button>
+</div>
+
+
+@code {
+    private bool isChecked;
+}

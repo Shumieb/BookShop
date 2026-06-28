@@ -2,28 +2,57 @@
 
 <PageTitle>Books</PageTitle>
 
-<h1 class="fs-2 text-center">Explore our Book Collection</h1>
+<div class="row mb-5">
+    <!-- filter and search section-->
+    <section class="col-3">
+        <div class="px-3 pt-4 pb-5 border border-success border-2 rounded">       
+            <h3 class="text-center text-decoration-underline">Search</h3>
+            <div class="mx-auto px-2 py-2 w-100 mb-4">        
+                <SearchForm 
+                    formStyles="mx-auto" 
+                    inputsTextStyles="form-control fs-5 border-success w-100 mb-1"
+                    buttonStyles="btn btn-success text-white fs-5 border-success w-100"
+                    />
+            </div>
 
-<div class="mx-auto">
-    <SearchForm formStyles="my-4 w-75 mx-auto"/>
+            <h3 class="text-center text-decoration-underline">Filter</h3>
+            <div>
+                <BooksFilters/>
+            </div>   
+        </div>
+    </section>
+
+    <!-- Book List section -->
+    <section class="col-9">
+
+        <h1 class="fs-2 text-center pb-4 text-decoration-underline">Explore our Book Collection</h1>
+
+        <section class="row row-cols-3 justify-content-center">
+            <BookCard/>
+            <BookCard/>
+            <BookCard/>
+            <BookCard/>
+            <BookCard/>
+            <BookCard/>
+            <BookCard/>
+            <BookCard/>
+            <BookCard/>
+            <BookCard/>
+            <BookCard/>
+            <BookCard/>
+        </section>
+
+    </section>
 </div>
 
-<BooksFilters/>
 
-<section class="row row-cols-3 justify-content-center">
-    <BookCard/>
-    <BookCard/>
-    <BookCard/>
-    <BookCard/>
-    <BookCard/>
-    <BookCard/>
-    <BookCard/>
-    <BookCard/>
-    <BookCard/>
-    <BookCard/>
-    <BookCard/>
-    <BookCard/>
-</section>
+
+
+
+
+
+
+
  
 @code {
     

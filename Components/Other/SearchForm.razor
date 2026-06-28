@@ -6,15 +6,15 @@
 >
     <DataAnnotationsValidator />
 
-    <div class="input-group">
-        <InputText class="form-control fs-5 border-success"
-            placeholder="Author, Book Title"
+    <div class="@inputsContainerStyles">
+        <InputText class="@inputsTextStyles"
+            placeholder="Author or Book Title"
             @bind-Value="searchModel.Query" 
         />
 
         <button 
             type="submit" 
-            class="btn btn-success text-white fs-5 border-success"
+            class="@buttonStyles"
         >
             Search
         </button>
@@ -28,6 +28,15 @@
 
     [Parameter]
     public string? formStyles { get; set; } 
+
+    [Parameter]
+    public string? inputsContainerStyles {get; set;}
+
+    [Parameter]
+    public string? inputsTextStyles {get; set;}
+
+    [Parameter]
+    public string? buttonStyles {get; set;}
 
     private SearchModel searchModel = new();
 

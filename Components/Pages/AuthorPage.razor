@@ -1,0 +1,17 @@
+@page "/author/{authorId}"
+@rendermode InteractiveServer
+
+<PageTitle>Author</PageTitle>
+
+<h1>Author - @authorId</h1>
+
+
+
+@code {
+    
+    [Parameter]
+    public string? authorId { get; set; }
+  
+
+    
+}

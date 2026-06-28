@@ -10,12 +10,11 @@ namespace BookShop.Models
         [StringLength(200, ErrorMessage = "The title cannot exceed 200 characters.")]
         public string Title { get; set; }
 
+        [Required(ErrorMessage = "Please enter the author's name.")]
+        public int AuthorId { get; set; }
+
         [Required(ErrorMessage = "Please select an author.")]
         public AuthorModel Author { get; set; }
-
-        [Required(ErrorMessage = "Please enter the author's name.")]
-        [StringLength(120, ErrorMessage = "Author name cannot exceed 120 characters.")]
-        public string AuthorName { get; set; }
 
         [Range(1, 5000, ErrorMessage = "Page count must be between 1 and 5000.")]
         public int PageCount { get; set; }
@@ -38,11 +37,11 @@ namespace BookShop.Models
         [Range(0, int.MaxValue, ErrorMessage = "Stock level cannot be negative.")]
         public int StockLevel { get; set; }
 
+        [Required(ErrorMessage = "Please enter a category name")]
+        public int CategoryId { get; set; }
+
         [Required(ErrorMessage = "Please choose a category.")]
         public CategoryModel Category { get; set; }
-
-        [Required(ErrorMessage = "Please enter a category name")]
-        public string CategoryName { get; set; }
 
         public List<BookTagModel> Tags { get; set; } = new();
     }

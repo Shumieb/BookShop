@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-between align-items-center">
+    <label class="custom-checkbox">         
+        <input type="checkbox" @bind="isChecked" />
+        <span class="box"></span>    
+        <span class="label-text ps-1 fs-5">@labelName</span>                   
+    </label>      
+</div>
+
+@code {
+
+    [Parameter]
+    public string? labelName {get;set;}
+
+    private bool isChecked;
+}
