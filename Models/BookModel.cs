@@ -29,7 +29,7 @@ namespace BookShop.Models
         public string Summary { get; set; }
 
         [StringLength(500, ErrorMessage = "Description cannot exceed 500 characters.")]
-        public string Description { get; set; }
+        public string AuthorNote { get; set; }
 
         [Range(0.01, 9999.99, ErrorMessage = "Price must be greater than zero.")]
         public decimal Price { get; set; }
@@ -44,5 +44,7 @@ namespace BookShop.Models
         public CategoryModel Category { get; set; }
 
         public List<BookTagModel> Tags { get; set; } = new();
+
+        public List<string> BookImageUrls { get; set; } = new();
     }
 }

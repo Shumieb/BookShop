@@ -3,7 +3,67 @@
 
 <PageTitle>Book</PageTitle>
 
-<h1>Book - @bookId</h1>
+<BookPageHero/>
+
+<hr>
+
+<section class="mb-3">
+    <h2>Book Details</h2>
+
+    <p class="fs-5 m-0 p-0 text-secondary">ISBN: 515165161665</p>
+    <p class="fs-5 m-0 p-0 text-secondary">Published: November 2025</p>
+    <p class="fs-5 m-0 p-0 text-secondary">Number of Pages: 500</p>    
+    <p class="fs-5 m-0 p-0 text-secondary">Copies In Stock: 50</p>  
+</section>
+
+<hr>
+
+<section class="mb-3">
+    <h2>Author's Note</h2>
+    <p class="fs-5 text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet cumque quod eaque maiores dolorem vel obcaecati, eius facere facilis necessitatibus in omnis dolorum nihil itaque qui fugit tempore. Rem, soluta officiis quod quibusdam voluptatem aspernatur libero vel amet, repudiandae, unde excepturi necessitatibus similique odio voluptatum veritatis. Reiciendis cupiditate non ad.</p>
+    <NavLink href="/books" class="fs-5 text-success">View Other Books By this Author</NavLink>
+</section>
+
+<hr>
+
+<section>
+    <h2 class="mb-0 pb-0">Customer Review</h2>
+    <div class="d-flex align-items-center">
+        <p class="fs-5 pe-2 pt-3 fw-bold">Average: </p>
+        <div class="fs-5 p-0 m-0">
+            <span><i class="bi bi-star-fill"></i></span>
+            <span><i class="bi bi-star-fill"></i></span>
+            <span><i class="bi bi-star-fill"></i></span>
+            <span><i class="bi bi-star-fill"></i></span>
+            <span><i class="bi bi-star"></i></span>
+        </div>
+    </div>
+    <p class="fs-5 p-0 m-0">Number of Reviews: 100</p>
+    <p class="fs-5 p-0 m-0 mb-4">Number of 5 
+        <span><i class="bi bi-star-fill"></i></span> 
+        Reviews: 60
+    </p>
+
+    <BookCustomerReviewCard/>
+    <BookCustomerReviewCard/>
+    <BookCustomerReviewCard/>
+    <BookCustomerReviewCard/>
+
+    <div class="my-4 text-center">
+        <button class="btn btn-secondary fs-5">View More Customer Reviews</button>
+    </div>
+
+    
+    
+</section>
+
+
+
+
+
+
+
+
 
 
 
