@@ -1,13 +1,39 @@
- <form class="@formStyles">
+ <EditForm 
+    Model="@searchModel" 
+    OnValidSubmit="@HandleSearch" 
+    class="@formStyles" 
+    FormName="SearchForm"
+>
+    <DataAnnotationsValidator />
+
     <div class="input-group">
-        <input type="text" class="form-control fs-5 border-success" placeholder="Search">
-        <input type="submit" value="Search" class="btn btn-success text-white fs-5 border-success">
+        <InputText class="form-control fs-5 border-success"
+            placeholder="Author, Book Title"
+            @bind-Value="searchModel.Query" 
+        />
+
+        <button 
+            type="submit" 
+            class="btn btn-success text-white fs-5 border-success"
+        >
+            Search
+        </button>
     </div>
-</form>
+
+    <ValidationMessage For="@(() => searchModel.Query)" />
+</EditForm>
 
 
 @code{
 
     [Parameter]
     public string? formStyles { get; set; } 
+
+    private SearchModel searchModel = new();
+
+    private void HandleSearch()
+    {
+        //TODO: Handle your search logic here
+        Console.WriteLine($"Searching for: {searchModel.Query}");
+    } 
 }
