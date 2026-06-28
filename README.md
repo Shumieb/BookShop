@@ -69,3 +69,7 @@
 
 - Users can view the authors publications
 - TODO: Implement pagnation
+
+## User Dashboard
+
+- Users can view their watchlist

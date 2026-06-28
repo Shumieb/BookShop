@@ -1,0 +1,13 @@
+@page "/user-dashboard/{userId}/my-watchlist"
+@rendermode InteractiveServer
+
+<PageTitle>User Watchlist</PageTitle>
+
+<h1>My Watchlist</h1>
+
+@code {
+    
+[Parameter]
+    public string? userId { get; set; }
+    
+}

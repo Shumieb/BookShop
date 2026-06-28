@@ -1,0 +1,13 @@
+@page "/user-dashboard/{userId}/order-history"
+@rendermode InteractiveServer
+
+<PageTitle>Order History</PageTitle>
+
+<h1>Order History</h1>
+
+@code {
+    
+[Parameter]
+    public string? userId { get; set; }
+    
+}

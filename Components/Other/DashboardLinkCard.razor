@@ -1,0 +1,19 @@
+<NavLink href="@linkHref" class="btn btn-outline-success fs-4 mb-3 mx-2" >
+    <span class="fw-bold"><i class="@iconName"></i></span> <br>
+    <span class="fw-bold">@linkName</span> <br>
+    <span class="fs-5">@linkDescription</span>
+</NavLink>
+
+@code{
+    [Parameter]
+    public string? linkHref {get;set;}
+
+    [Parameter]
+    public string? iconName {get;set;}
+
+    [Parameter]
+    public string? linkName {get;set;}
+
+    [Parameter]
+    public string? linkDescription {get;set;} 
+}

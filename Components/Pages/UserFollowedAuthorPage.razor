@@ -1,0 +1,13 @@
+@page "/user-dashboard/{userId}/followed-authors"
+@rendermode InteractiveServer
+
+<PageTitle>User Followed Authors</PageTitle>
+
+<h1>Followed Authors</h1>
+
+@code {
+    
+[Parameter]
+    public string? userId { get; set; }
+    
+}

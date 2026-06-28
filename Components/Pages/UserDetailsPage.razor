@@ -1,0 +1,13 @@
+@page "/user-dashboard/{userId}/personal-details"
+@rendermode InteractiveServer
+
+<PageTitle>User Details</PageTitle>
+
+<h1>User Details</h1>
+
+@code {
+    
+[Parameter]
+    public string? userId { get; set; }
+    
+}

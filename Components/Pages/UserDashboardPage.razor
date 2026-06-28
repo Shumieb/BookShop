@@ -1,36 +1,52 @@
-@page "/user-dashboard"
+@page "/user-dashboard/{userId}"
 @rendermode InteractiveServer
 
 <PageTitle>user-dashboard</PageTitle>
 
-<h1>user-dashboard</h1>
+<h1 class="fs-2 text-center">Welcome Back UserName </h1>
+<p class="fs-5 text-secondary text-center">Last Logged in on 02 November 2025</p>
 
-<section>
-    <h3>Watchlist</h3>
-</section>
+<div class="row row-cols-3 justify-content-center mx-0 px-0">
+    <DashboardLinkCard 
+        linkHref="/user-dashboard/one/my-watchlist" 
+        iconName="bi bi-eye" 
+        linkName="My Watchlist" 
+        linkDescription="View, Edit, Books in your Watchlist"
+    />
 
-<section>
-    <h3>Followed Author</h3>
-</section>
+    <DashboardLinkCard 
+        linkHref="/user-dashboard/one/followed-authors" 
+        iconName="bi bi-pen" 
+        linkName="Followed Authors" 
+        linkDescription="View, Edit, your Followed Authors"
+    />
 
-<section>
-    <h3>Order History</h3>
-</section>
+    <DashboardLinkCard 
+        linkHref="/user-dashboard/one/order-history" 
+        iconName="bi bi-box-seam" 
+        linkName="Order History" 
+        linkDescription="View your orders"
+    />
 
-<section>
-    <h3>Reviews</h3>
-</section>
+    <DashboardLinkCard 
+        linkHref="/user-dashboard/one/personal-details" 
+        iconName="bi bi-person" 
+        linkName="Personal Details" 
+        linkDescription="View, Update your personal details"
+    />
 
-<section>
-    <h3>Personal Details</h3>
-</section>
-
-
+    <DashboardLinkCard 
+        linkHref="/user-dashboard/one/reviews" 
+        iconName="bi bi-star-fill" 
+        linkName="Reviews" 
+        linkDescription="View your Reviews"
+    />
+ 
+</div>
 
 @code {
     
-
-  
-
+[Parameter]
+    public string? userId { get; set; }
     
 }
