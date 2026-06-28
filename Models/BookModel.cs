@@ -4,11 +4,14 @@ namespace BookShop.Models
 {
     public class BookModel
     {
-        public int Id { get; set; }
+        public int BookId { get; set; }
 
         [Required(ErrorMessage = "A book title is required.")]
         [StringLength(200, ErrorMessage = "The title cannot exceed 200 characters.")]
         public string Title { get; set; }
+
+        [Required(ErrorMessage = "Please select an author.")]
+        public AuthorModel Author { get; set; }
 
         [Required(ErrorMessage = "Please enter the author's name.")]
         [StringLength(120, ErrorMessage = "Author name cannot exceed 120 characters.")]
@@ -36,8 +39,11 @@ namespace BookShop.Models
         public int StockLevel { get; set; }
 
         [Required(ErrorMessage = "Please choose a category.")]
-        public string Category { get; set; }
+        public CategoryModel Category { get; set; }
 
-        public List<string> Tags { get; set; } = new();
+        [Required(ErrorMessage = "Please enter a category name")]
+        public string CategoryName { get; set; }
+
+        public List<BookTagModel> Tags { get; set; } = new();
     }
 }
