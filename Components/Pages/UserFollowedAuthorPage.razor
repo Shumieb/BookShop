@@ -3,7 +3,24 @@
 
 <PageTitle>User Followed Authors</PageTitle>
 
-<h1>Followed Authors</h1>
+<div class="position-relative px-4 mb-4">
+    <NavLink href="/user-dashboard/one" class="btn btn-secondary fs-6 position-absolute top-0 start-1"> 
+        <span><i class="bi bi-arrow-left-short"></i></span> 
+        Back to Dashboard
+    </NavLink>
+
+    <h1 class="text-center fs-2 text-decoration-underline">Followed Authors</h1>
+
+    <p class="fs-5 text-secondary text-center">You are following 5 Authors.</p>
+</div>
+
+<div>
+    <AuthorCard/>
+    <AuthorCard/>
+    <AuthorCard/>
+    <AuthorCard/>
+    <AuthorCard/>
+</div>
 
 @code {
     

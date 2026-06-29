@@ -18,6 +18,10 @@
 - Clicking on the "Add to Basket" button add a book to the basket
 - TODO: Add logic to add a book to the basket
 
+- If a user is logged in they can view the add to watchlist button
+- Clicking on the "Add to Watchlisr" button add a book to the user watchlist
+- TODO: Add logic to add a book to the user watchlist
+
 - When clicked the "View all Books" buttons take you to the books page
 
 - Users can view 3 random customer review
@@ -78,3 +82,10 @@
 
 - Users can view books in their watchlist
 - Users can remove books from their watchlist
+- TODO: Implement logic to allow users to remove books from the watchlist
+
+## Followed Authors Page
+
+- Users can view followed authors
+- Users can remove followed authors from their list
+- TODO: Implement logic to allow users to remove authors from their list
