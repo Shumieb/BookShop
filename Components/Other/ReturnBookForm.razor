@@ -1,0 +1,49 @@
+@using BookStore.Models
+
+<EditForm Model="@ReturnModel" OnValidSubmit="SubmitReturn" class="mb-5">
+        <DataAnnotationsValidator />
+
+        <div class="mb-3">
+            <label class="form-label fw-bold fs-5">Reason for return</label>
+            <select class="form-select fs-5" @bind="ReturnModel.Reason">
+                <option value="">Select a reason</option>
+                <option value="Damaged">Damaged</option>
+                <option value="Wrong Item">Wrong Item</option>
+                <option value="Not as described">Not as described</option>
+                <option value="Changed mind">Changed mind</option>
+            </select>
+            <ValidationMessage For="@(() => ReturnModel.Reason)" />
+        </div>
+
+        <div class="mb-3 fs-5">
+            <label class="form-label fw-bold">Additional comments (optional)</label>
+            <textarea class="form-control" rows="6" @bind="ReturnModel.Comments"></textarea>
+        </div>
+
+        <button class="btn btn-success w-100 fw-bold fs-5">
+            <i class="bi bi-arrow-return-left me-2"></i> Submit Return Request
+        </button>
+    </EditForm>
+
+    @code{
+        public OrderModel Order { get; set; }
+        public OrderItemModel OrderItem { get; set; }
+        public BookModel Book { get; set; }
+
+        public ReturnItemModel ReturnModel { get; set; } = new();
+
+        protected override async Task OnInitializedAsync()
+        {
+            // Load order, order item, and book from your service
+            // Example:
+            // OrderItem = await OrderService.GetOrderItem(OrderItemId);
+            // Order = OrderItem.Order;
+            // Book = OrderItem.Book;
+        }
+
+        void SubmitReturn()
+        {
+            // Handle return logic
+            // Example: await ReturnService.Submit(ReturnModel, OrderItemId);
+        }
+    }

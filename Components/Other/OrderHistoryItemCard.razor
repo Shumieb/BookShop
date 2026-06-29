@@ -1,0 +1,46 @@
+@inject NavigationManager NavigationManager
+
+<div class="my-3">
+        <div class="order-book-info d-flex align-items-center ">
+            <img src="https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg"
+                alt="Book cover"
+                class="order-book-image me-3" />
+
+            <div>
+                <div class="fw-bold fs-5">This is a book Title</div>
+                <div class="text-muted fs-5">by Author Name</div>
+                <div class="text-muted fs-5">Qty: 2</div>
+            </div>
+        </div>       
+
+        <div class="d-flex gap-2 flex-wrap mt-2">
+            <button class="btn btn-success btn-sm" @onclick="OrderAgain">
+                <i class="bi bi-arrow-repeat me-1"></i> Order Again
+            </button>
+
+            <button class="btn btn-outline-success btn-sm" @onclick="TrackOrder">
+                <i class="bi bi-truck me-1"></i> Track Order
+            </button>
+
+            <button class="btn btn-outline-secondary btn-sm" @onclick="LeaveFeedback">
+                <i class="bi bi-chat-left-text me-1"></i> Leave Feedback
+            </button>
+
+            <button class="btn btn-outline-danger btn-sm" @onclick="ReturnItem">
+                <i class="bi bi-arrow-return-left me-1"></i> Return Item
+            </button>
+        </div>
+    </div>
+
+    <hr>
+
+    @code {
+    
+    void OrderAgain() { /* logic */ }
+    void TrackOrder() { /* logic */ }
+    void LeaveFeedback() { /* logic */ }
+    
+    void ReturnItem() {  
+        NavigationManager.NavigateTo("/return-item/5551516156");
+    }
+}

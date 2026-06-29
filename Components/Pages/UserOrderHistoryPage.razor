@@ -3,11 +3,34 @@
 
 <PageTitle>Order History</PageTitle>
 
-<h1>Order History</h1>
+<h1 class="text-center fs-2 text-decoration-underline">Order History</h1>
+
+<div class="d-flex justify-content-end fs-5 mb-3">
+    <select class="form-select year-dropdown" @bind="SelectedYear">
+        @foreach (var year in Years)
+        {
+            <option value="@year">@year</option>
+        }
+    </select>
+</div>
+
+<div>
+    <OrderHistoryCard/>
+    <OrderHistoryCard/>
+    <OrderHistoryCard/>
+    <OrderHistoryCard/>
+</div>
+
 
 @code {
     
 [Parameter]
     public string? userId { get; set; }
+
+    public int SelectedYear { get; set; } = 2026;
+
+    public List<int> Years { get; set; } = Enumerable
+        .Range(2026, 6)   // 2026 + 6 values = 2026–2031
+        .ToList();
     
 }

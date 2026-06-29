@@ -89,3 +89,26 @@
 - Users can view followed authors
 - Users can remove followed authors from their list
 - TODO: Implement logic to allow users to remove authors from their list
+
+## Order History Page
+
+- Users can view their order history
+- They can click on the buttons to reorder, track order, leave feedback or return item
+- TODO: Add logic to reorder
+- TODO: Add logic to navigate to the track order page
+- TODO: Add logic to navigate to the leave review page
+- TODO: Add logic to navigate to the return items page
+
+## Personal Details Page
+
+## Reviews Page
+
+## Track Order Page
+
+## Leave review Page
+
+## Return Item Page
+
+- Users can view the details of the book they want to return
+- Users can fill the form with the reason for return
+- TODO: ADD logic to return an item

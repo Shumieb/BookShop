@@ -1,0 +1,16 @@
+.year-dropdown-wrapper {
+  text-align: right;
+}
+
+.year-dropdown {
+  width: 140px; /* smaller dropdown */
+  border-color: #198754; /* Bootstrap success */
+  border-width: 3px;
+  color: #198754;
+  font-weight: 600;
+}
+
+.year-dropdown:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25); /* success glow */
+}

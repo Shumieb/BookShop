@@ -1,0 +1,10 @@
+.return-item-card .form-select,
+.return-item-card .form-control {
+  border-color: #198754;
+}
+
+.return-item-card .form-select:focus,
+.return-item-card .form-control:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}

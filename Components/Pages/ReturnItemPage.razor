@@ -1,0 +1,42 @@
+@page "/return-item/{OrderItemId}"
+@using BookStore.Models
+
+<div class="return-item-card shadow-sm rounded">
+    <h3 class="text-center text-decoration-underline">Return Item</h3>
+    <p class="text-muted fs-5 text-center">We are sorry you want to return the item.</p>
+
+    <div class="d-flex align-items-center my-4">
+        <img src="https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg"
+             alt="Book cover"
+             class="return-book-image me-3" />
+
+        <div>
+            <h5 class="mb-1 fs-4">This is a book title</h5>
+            <div class="text-muted fs-5">by Author Name</div>
+            <div class="text-muted fs-5">Order Number: 0000000000000</div>
+            <div class="text-muted fs-5">Placed: 20 June 2026</div>
+        </div>
+    </div>
+
+    <ReturnBookForm/>
+
+    
+</div>
+
+@code {
+    [Parameter] public string? OrderItemId { get; set; }
+
+    public OrderModel Order { get; set; }
+    public OrderItemModel OrderItem { get; set; }
+    public BookModel Book { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Load order, order item, and book from your service
+        // Example:
+        // OrderItem = await OrderService.GetOrderItem(OrderItemId);
+        // Order = OrderItem.Order;
+        // Book = OrderItem.Book;
+    }
+    
+}
