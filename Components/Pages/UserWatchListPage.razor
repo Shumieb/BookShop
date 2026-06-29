@@ -3,7 +3,27 @@
 
 <PageTitle>User Watchlist</PageTitle>
 
-<h1>My Watchlist</h1>
+<div class="position-relative px-4">
+    <NavLink href="/user-dashboard/one" class="btn btn-secondary fs-6 position-absolute top-0 start-1"> 
+        <span><i class="bi bi-arrow-left-short"></i></span> 
+        Back to Dashboard
+    </NavLink>
+
+    <h1 class="text-center fs-2 text-decoration-underline">My Watchlist</h1>
+
+    <p class="fs-5 text-secondary text-center">You have 10 books in your watch list.</p>
+</div>
+
+<div class="row row-cols-4 justify-content-center">
+        <BookCard/>
+        <BookCard/>
+        <BookCard/>
+        <BookCard/>
+        <BookCard/>
+        <BookCard/>
+        <BookCard/>
+        <BookCard/>
+    </div>
 
 @code {
     

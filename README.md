@@ -70,6 +70,11 @@
 - Users can view the authors publications
 - TODO: Implement pagnation
 
-## User Dashboard
+## User Dashboard Page
 
-- Users can view their watchlist
+- Users can view cards that they can click. Once clicked the users can go to pages where they can view their watchlist, followed authors, order history, reviews and personal details.
+
+## Watchlist Page
+
+- Users can view books in their watchlist
+- Users can remove books from their watchlist
