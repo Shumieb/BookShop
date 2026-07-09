@@ -36,8 +36,10 @@
 
     @code {
     
-    void OrderAgain() { /* logic */ }
-    void TrackOrder() { /* logic */ }
+    void OrderAgain() { /* logic  Add logic to add the item to cart.*/ }
+    void TrackOrder() { 
+        NavigationManager.NavigateTo("/track-order/one/555156156");
+    }
     void LeaveFeedback() { 
         NavigationManager.NavigateTo("/leave-review/one/5551516156");
      }

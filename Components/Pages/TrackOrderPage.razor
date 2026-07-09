@@ -1,2 +1,51 @@
-@page "/track-order/{userId}/{OrderItemId}"
+@page "/track-order/{UserId}/{OrderItemId}"
 @using BookStore.Models
+
+<div class="position-relative w-80 mx-auto my-5">
+
+    <NavLink href="/user-dashboard/one/order-history" class="btn btn-secondary fs-6 position-absolute top-0 start-0"> 
+        <span><i class="bi bi-arrow-left-short"></i></span> 
+        Back
+    </NavLink>
+
+    <p class="fs-2 text-center text-decoration-underline py-0 mb-2 fw-bold">Order Tracking</p>
+
+    <div class="card border-success mb-4">        
+
+        <div class="card-body">
+            <p class="card-title fs-5 fw-bold"> Order Number: 1555625124455</p>
+            <p class="card-text fs-5 fw-bold">
+                Status:
+                <span class="text-success">Delivered</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-secondary text-white">
+            <p class="fs-4 py-0 my-0 fw-bold">Order Summary</p>
+        </div>
+
+        <ul class="list-group list-group-flush">           
+            <BookTrackingSummaryCard/>
+            <BookTrackingSummaryCard/>
+            <BookTrackingSummaryCard/>
+            <BookTrackingSummaryCard/>
+        </ul>
+    </div>
+
+</div>
+
+@code {
+    [Parameter] public int orderNumber { get; set; }
+    [Parameter] public string? OrderItemId { get; set; }
+     [Parameter] public string? UserId { get; set; }
+
+    private OrderModel order;
+
+    protected override void OnInitialized()
+    {
+        // Example data — replace with your database lookup
+      
+    }
+}

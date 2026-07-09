@@ -105,6 +105,9 @@
 
 ## Track Order Page
 
+- Users can view their order status
+- TODO: Add logic to retrieve orders
+
 ## Leave review Page
 
 - Users can view the details of the book they want to review
