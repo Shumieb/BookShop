@@ -1,0 +1,11 @@
+.item-card {
+  max-width: 50%;
+  margin: auto;
+}
+
+.book-image {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 4px;
+}

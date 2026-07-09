@@ -1,26 +1,36 @@
 @page "/return-item/{OrderItemId}"
 @using BookStore.Models
 
-<div class="return-item-card shadow-sm rounded">
-    <h3 class="text-center text-decoration-underline">Return Item</h3>
-    <p class="text-muted fs-5 text-center">We are sorry you want to return the item.</p>
+<div class="position-relative w-80 mx-auto">
+    <NavLink href="/user-dashboard/one/order-history" class="btn btn-secondary fs-6 position-absolute top-0 start-0"> 
+        <span><i class="bi bi-arrow-left-short"></i></span> 
+        Back
+    </NavLink>
 
-    <div class="d-flex align-items-center my-4">
-        <img src="https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg"
-             alt="Book cover"
-             class="return-book-image me-3" />
-
-        <div>
-            <h5 class="mb-1 fs-4">This is a book title</h5>
-            <div class="text-muted fs-5">by Author Name</div>
-            <div class="text-muted fs-5">Order Number: 0000000000000</div>
-            <div class="text-muted fs-5">Placed: 20 June 2026</div>
+    <div class="return-item-card shadow-sm rounded ">  
+        <div class=" px-4 mb-4">      
+            <h3 class="text-center text-decoration-underline">Return Item</h3>
+            <p class="text-muted fs-5 text-center">We are sorry you want to return this item.</p>
         </div>
+
+        <div class="d-flex align-items-center my-4">
+            <img src="https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg"
+                alt="Book cover"
+                class="return-book-image me-3" />
+
+            <div>
+                <h5 class="fs-4 py-0 my-0">This is a book title</h5>
+                <p class="text-muted fs-5 py-0 my-0">by Author Name</p>
+                <p class="text-muted fs-5 py-0 my-0">Order Number: 0000000000000</p>
+                <p class="fs-5 py-0 my-0 text-muted">Unit Price: £30.00</p>
+                <p class="text-muted fs-5 py-0 my-0">Placed: 20 June 2026</p>
+                <p class="text-muted fs-5 py-0 my-0">Delivered: 20 June 2026</p>
+            </div>
+        </div>
+
+        <ReturnBookForm/>
+        
     </div>
-
-    <ReturnBookForm/>
-
-    
 </div>
 
 @code {

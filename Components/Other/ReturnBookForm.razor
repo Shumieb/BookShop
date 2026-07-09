@@ -3,6 +3,15 @@
 <EditForm Model="@ReturnModel" OnValidSubmit="SubmitReturn" class="mb-5">
         <DataAnnotationsValidator />
 
+        <div class="mb-3 fs-5">
+            <label class="form-label fw-bold fs-5">Quantity to Return</label>
+            <select class="form-select fs-5" @bind="ReturnModel.Reason">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+            <ValidationMessage For="@(() => ReturnModel.Quantity)" />
+        </div>
+
         <div class="mb-3">
             <label class="form-label fw-bold fs-5">Reason for return</label>
             <select class="form-select fs-5" @bind="ReturnModel.Reason">
@@ -19,6 +28,8 @@
             <label class="form-label fw-bold">Additional comments (optional)</label>
             <textarea class="form-control" rows="6" @bind="ReturnModel.Comments"></textarea>
         </div>
+
+        <p class="fs-5 text-center mb-3 text-muted">Total Refund Amount: 2 x £30 = £60</p>
 
         <button class="btn btn-success w-100 fw-bold fs-5">
             <i class="bi bi-arrow-return-left me-2"></i> Submit Return Request

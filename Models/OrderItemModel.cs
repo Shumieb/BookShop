@@ -25,6 +25,20 @@ namespace BookStore.Models
         [Range(0, double.MaxValue)]
         public decimal UnitPrice { get; set; }
 
-        public decimal Subtotal => UnitPrice * Quantity;
+        public bool Delivered { get; set; } = false;
+        public DateTime DeliveryDate { get; set; }
+
+        public bool Returned { get; set; } = false;
+
+        public int ReturnedQuantity { get; set; } = 0;
+
+        public decimal ReturnTotal => ReturnedQuantity * UnitPrice;
+
+        [Required]
+        public string ReturnReason { get; set; }
+
+        public string ReturnComments { get; set; }
+
+        public decimal Subtotal => (UnitPrice * Quantity) - ReturnTotal;
     }
 }

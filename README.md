@@ -6,7 +6,7 @@
 
 ## Pages
 
-### Home Page
+## Home Page
 
 - Users can search for books using the author name, book title
 - TODO: Add logic to handle search
@@ -26,7 +26,7 @@
 
 - Users can view 3 random customer review
 
-### Books Page
+## Books Page
 
 - Users can view a list of books on the page
 - TODO: Implement pagnation
@@ -45,7 +45,7 @@
 - Users can filter books by the category name
 - TODO: Implement logic to filter by category name
 
-### Book Page
+## Book Page
 
 - Users can view a book's details
 
@@ -62,7 +62,7 @@
 - Users can click a button to load more customer review
 - TODO: Implement logic to load more review
 
-### Author Page
+## Author Page
 
 - Users can view author details
 
@@ -106,6 +106,12 @@
 ## Track Order Page
 
 ## Leave review Page
+
+- Users can view the details of the book they want to review
+- Users can fill the form to leave a book rating and review
+- Users can fill the form to leave a delivery rating and review
+- Users can fill the form to leave a service rating and review
+- TODO: Add logic to submit the review
 
 ## Return Item Page
 
