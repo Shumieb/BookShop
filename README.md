@@ -126,3 +126,11 @@
 - Users can view the details of the book they want to return
 - Users can fill the form with the reason for return
 - TODO: ADD logic to return an item
+
+## Update User Details Page
+
+## Update Shipping Details Page
+
+## Update Password Page
+
+## Update Payment Details Page

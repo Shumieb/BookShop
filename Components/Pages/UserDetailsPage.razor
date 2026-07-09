@@ -1,13 +1,85 @@
 @page "/user-dashboard/{userId}/personal-details"
-@rendermode InteractiveServer
+@using BookStore.Models
 
 <PageTitle>User Details</PageTitle>
 
-<h1>User Details</h1>
+<div class="container mt-4">
+
+    <div class="position-relative mb-4">
+        <NavLink href="/user-dashboard/one" class="btn btn-secondary fs-6 position-absolute top-0 start-0"> 
+            <span><i class="bi bi-arrow-left-short"></i></span> 
+            Back to Dashboard
+        </NavLink>
+        <h1 class="text-center fs-2 text-decoration-underline">User Details</h1>
+    </div>
+
+    <!-- User Info -->
+    <div class="card border-success mb-4 fs-5">
+        <div class="card-header bg-success text-white">
+            <p class="py-0 my-0">Account Information</p>
+        </div>
+        <div class="card-body">
+            <p class="my-0 py-0"><strong>Username:</strong> UserName</p>
+            <p class="my-0 py-0"><strong>First Name:</strong> First Name</p>
+            <p class="my-0 py-0"><strong>Surname:</strong> Surname</p>
+            <p class="my-0 py-0"><strong>Email:</strong> email@email.com</p>
+
+            <div class="mt-3">
+                <NavLink class="btn btn-secondary fs-5" href="/update-user-details/one">
+                    Update Account Information
+                </NavLink>
+            </div>            
+        </div>
+    </div>
+
+    <!-- Shipping Addresses -->
+    <div class="card border-success mb-4 fs-5">
+        <div class="card-header bg-success text-white">
+            <p class="py-0 my-0">Shipping Addresses</p>
+        </div>
+        <div class="card-body fs-5 row px-4 gap-4 justify-content-center py-4">
+            <ViewShippingAddressCard/>    
+            <ViewShippingAddressCard/> 
+            <ViewShippingAddressCard/>   
+            <ViewShippingAddressCard/> 
+        </div>
+    </div>
+
+    <!-- Change Password -->
+    <div class="card border-success mb-4 fs-5">
+        <div class="card-header bg-success text-white">
+            <p class="py-0 my-0">Manage Password</p>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-secondary fs-5" href="/update-password/one">
+                Update Password
+            </a>
+        </div>
+    </div>
+
+    <!-- Payment Details -->
+    <div class="card border-success mb-4 fs-5">
+        <div class="card-header bg-success text-white">
+            <p class="py-0 my-0">Manage Payment Details</p>
+        </div>
+        <div class="card-body">
+            <NavLink class="btn btn-secondary fs-5" href="/payment-details/one">
+                View/Update Payment Details
+            </NavLink>
+        </div>
+    </div>
+
+</div>
 
 @code {
-    
-[Parameter]
-    public string? userId { get; set; }
-    
+
+    [Parameter] public string? userId { get; set; }
+
+    private UserModel user = new();
+
+    protected override void OnInitialized()
+    {
+        // Example data — replace with your database lookup
+    }
 }
+
