@@ -3,11 +3,34 @@
 
 <PageTitle>Order Reviews</PageTitle>
 
-<h1>Order Reviews</h1>
+<div class="container mt-4">
+    <div class="position-relative my-4">
+        <NavLink href="/user-dashboard/one" class="btn btn-secondary fs-6 position-absolute top-0 start-0"> 
+            <span><i class="bi bi-arrow-left-short"></i></span> 
+            Back to Dashboard
+        </NavLink>
+        <h1 class="text-center fs-2 text-decoration-underline">My Reviews</h1>
+    </div>
+
+    <CustomerReviewViewCard/>
+    <CustomerReviewViewCard/>
+    <CustomerReviewViewCard/>
+    <CustomerReviewViewCard/>
+
+    
+</div>
 
 @code {
-    
-[Parameter]
+    [Parameter]
     public string? userId { get; set; }
+
+    private List<CustomerReviewModel> reviews = new();
+
+    protected override void OnInitialized()
+    {
+        // Example data — replace with your database lookup
+        
+    }
     
 }
+

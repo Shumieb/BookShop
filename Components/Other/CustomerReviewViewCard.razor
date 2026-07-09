@@ -1,0 +1,58 @@
+<div class="card mb-5 border-success shadow">
+        <div class="card-header bg-success text-white">
+           <p class="fs-5 py-0 my-0">Your review for Order Number: 155526525 </p>
+        </div>
+
+        <div class="card-body">
+            <CustomerReviewViewCardTop/>
+            <hr>
+            <CustomerReviewViewCardTop/>
+            <hr>
+
+            <div class="fs-5 mb-3">
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="py-0 my-0 fw-bold">Order Delivery Rating: </p>
+                    <div class="ms-3">
+                        <span><i class="bi bi-star-fill"></i></span>
+                        <span><i class="bi bi-star-fill"></i></span>
+                        <span><i class="bi bi-star-fill"></i></span>
+                        <span><i class="bi bi-star-fill"></i></span>
+                        <span><i class="bi bi-star"></i></span>
+                    </div>
+                </div>
+                
+                <p class="py-0 my-0 text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque numquam neque distinctio expedita cum?</p>
+            </div>
+
+            <div class="fs-5 mb-3">
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="py-0 my-0 fw-bold">Order Service Rating: </p>
+                    <div class="ms-3">
+                        <span><i class="bi bi-star-fill"></i></span>
+                        <span><i class="bi bi-star-fill"></i></span>
+                        <span><i class="bi bi-star-fill"></i></span>
+                        <span><i class="bi bi-star-fill"></i></span>
+                        <span><i class="bi bi-star"></i></span>
+                    </div>
+                </div>
+                
+                <p class="py-0 my-0 text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque numquam neque distinctio expedita cum?</p>
+            </div>
+
+            <div class="fs-5">
+                <button class="btn btn-danger fs-5"
+                        @onclick="() => DeleteReview()">
+                    Delete Review
+                </button>
+            </div>            
+        </div>
+    </div>
+
+    @code{
+
+        private void DeleteReview()
+        {       
+
+            // In a real app, also delete from database
+        }
+    }

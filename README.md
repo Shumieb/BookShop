@@ -103,6 +103,11 @@
 
 ## Reviews Page
 
+- Users can view their reviews for the orders
+- Users can delete their reviews
+- TODO: Add modal to ask users to verify delete
+- TODO: Add functionality to delete a review
+
 ## Track Order Page
 
 - Users can view their order status
