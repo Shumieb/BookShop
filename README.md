@@ -146,3 +146,18 @@
 - Users will be redirected to the view user detail page when they click the cancel button
 
 ## Update Payment Details Page
+
+- TODO: Create page
+
+## Shopping Cart Page
+
+- Users can view items they added to the cart
+- users can adjust the quantity of the items they have added to the cart
+- Users can remove items from the cart
+- Users can apply a discount code
+- Users can view their total amounts
+- Users can navigate to the checkout page
+- TODO: Add functionality to reduce the quantity of an item
+- TODO: Add functionality to add the quantity of an item
+- TODO: Add functionality to remove an item from the cart
+- TODO: Add functionality to apply a discount

@@ -1,0 +1,96 @@
+﻿@page "/shopping-cart/{userId}"
+@rendermode InteractiveServer
+@inject NavigationManager Nav
+
+<PageTitle>Shopping Cart</PageTitle>
+
+<div class="w-75 mx-auto">
+    <h3 class="text-center text-decoration-underline mb-2">Your Shopping Cart</h3>
+    <p class="text-center mb-4 fs-5">You have <span class="fw-bold text-success">10</span> items in your cart.</p>
+
+    <div class="mb-3">
+        <CartitemCart/>
+        <CartitemCart/>
+        <CartitemCart/>
+        <CartitemCart/>   
+    </div>
+
+    <div class="d-flex gap-3 justify-content-between mt-4 py-2 mb-4">
+        <!-- DISCOUNT CODE INPUT -->
+        <div class="w-50">
+            <div class="input-group">
+                <InputText class="form-control fs-5 border border-success"
+                            placeholder="Enter discount code"
+                            @bind-Value="DiscountCode" />
+
+                <button class="btn btn-success fs-5"
+                        @onclick="ApplyDiscount">
+                    Apply
+                </button>
+            </div>
+        </div>
+
+        <div class="w-50">
+            <p class="fs-4 ">Order Summary</p>
+            <!-- CART SUMMARY -->
+            <div class="d-flex flex-column align-items-end">
+                <table class="table table-bordered fs-5 fw-normal">
+                    <tbody>
+                        <tr>
+                            <th>Cart Total</th>
+                            <td>£@CartTotal</td>
+                        </tr>
+                        <tr>
+                            <th>Discount Applied</th>
+                            <td>@(DiscountAmount > 0 ? $"£{DiscountAmount}" : "£0")</td>
+                        </tr>
+                        <tr class="fw-bold">
+                            <th>Total After Discount <span class="text-muted fst-italic">(- Delivery Charge)</span></th>
+                            <td>£@FinalTotal</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <p class="fs-5 text-muted fst-italic text-center">Delivery Charge will be applied when you checkout</p>
+                <NavLink href="" class="btn btn-success fs-5 w-100">Checkout</NavLink>
+            </div>
+        </div>      
+    </div>
+</div>
+
+@code {
+    public List<CartItem> CartItems { get; set; } = new();
+
+    public string DiscountCode { get; set; } = string.Empty;
+    public decimal DiscountAmount { get; set; }
+    public decimal CartTotal => CartItems.Sum(i => i.Book.Price * i.Quantity);
+    public decimal FinalTotal => CartTotal - DiscountAmount;
+
+    [Parameter] public string? userId {get; set;}  
+
+    protected override async Task OnInitializedAsync()
+    {
+        //CartItems = await CartService.GetCartItems();
+    }
+
+    private void ApplyDiscount()
+    {
+        // Example discount logic
+        if (DiscountCode == "BOOK10")
+        {
+            DiscountAmount = CartTotal * 0.10m; // 10% off
+        }
+        else if (DiscountCode == "SAVE5")
+        {
+            DiscountAmount = 5m; // £5 off
+        }
+        else
+        {
+            DiscountAmount = 0;
+        }
+    }
+    
+}
+
+
