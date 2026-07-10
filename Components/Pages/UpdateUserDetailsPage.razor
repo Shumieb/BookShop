@@ -1,10 +1,85 @@
 @page "/update-user-details/{userId}"
 @using BookStore.Models
+@inject NavigationManager NavigationManager;
+
 
 <PageTitle>Update User Details</PageTitle>
 
-<h1>Update user details</h1>
+<EditForm Model="@model" OnValidSubmit="@HandleUpdate" class="w-75 mx-auto" FormName="UpdateUserDetails">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-@code{
-     [Parameter] public string? userId { get; set; }
+    <div class="mt-4">
+    
+        <p class="fs-2 text-decoration-underline text-center">Update Account Information</p>     
+
+        <div class="fs-5">
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <InputText class="form-control border-success fs-5"
+                           @bind-Value="model.Username" />
+            </div>
+
+            <!-- First Name -->
+            <div class="mb-3">
+                <label class="form-label">First Name</label>
+                <InputText class="form-control border-success fs-5"
+                           @bind-Value="model.FirstName" />
+            </div>
+
+            <!-- Last Name -->
+            <div class="mb-3">
+                <label class="form-label">Last Name</label>
+                <InputText class="form-control border-success fs-5"
+                           @bind-Value="model.LastName" />
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <InputText class="form-control border-success fs-5"
+                           @bind-Value="model.Email" />
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex gap-3 my-5">
+                <button class="btn btn-success fs-5 w-50 py-2" type="submit">Update Details</button>
+                <NavLink href="/user-dashboard/one/personal-details" class="btn btn-secondary fs-5 w-50">Cancel</NavLink>
+            </div>
+
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    private UpdateProfileModel model = new();
+
+    [Parameter] public string? userId { get; set; }
+
+    private bool cancelled = false;
+
+    protected override void OnInitialized()
+    {
+        // Load existing user details (example)
+        model = new UpdateProfileModel
+        {
+            Username = "shumi123",
+            FirstName = "Shumi",
+            LastName = "Rahman",
+            Email = "shumi@example.com"
+        };
+    }
+
+    private void HandleUpdate()
+    {
+        // Save to database or API
+        Console.WriteLine("Profile updated");
+
+        //NavigationManager.NavigateTo("/user-dashboard/one/personal-details");
+
+    }
+
+   
 }

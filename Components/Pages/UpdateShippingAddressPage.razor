@@ -1,10 +1,68 @@
-@page "/update-shipping-details/{userId}"
+@page "/update-shipping-details/{userId}/{addressId}"
 @using BookStore.Models
+@inject NavigationManager Nav
 
 <PageTitle>Update Shipping Details</PageTitle>
 
-<h1>Update shipping details</h1>
+<EditForm Model="@Address"
+          OnValidSubmit="HandleSubmit"
+          FormName="EditShippingAddressForm"
+          class="w-75 mx-auto fs-5"
+>
 
-@code{
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+     <p class="fs-2 text-decoration-underline text-center">Update Shipping Address</p>  
+
+    <div class="mb-3">
+        <label class="form-label">Nickname</label>
+        <InputText class="form-control fs-5 border-success" @bind-Value="Address.ShippingAddressNickname" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Street</label>
+        <InputText class="form-control fs-5 border-success" @bind-Value="Address.Street" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">City</label>
+        <InputText class="form-control fs-5 border-success" @bind-Value="Address.City" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Postcode</label>
+        <InputText class="form-control fs-5 border-success" @bind-Value="Address.Postcode" />
+    </div>
+
+    <div class="mb-5">
+        <label class="form-label">Country</label>
+        <InputText class="form-control fs-5 border-success" @bind-Value="Address.Country" />
+    </div>
+
+    <div class="d-flex gap-3 mb-5">
+        <button type="submit" class="btn btn-success me-2 fs-5 w-50 py-2">Save Changes</button>
+        <a class="btn btn-secondary fs-5 w-50 py-2" href="/user-dashboard/one/personal-details">Cancel</a>
+    </div>    
+
+</EditForm>
+
+@code {
+
      [Parameter] public string? userId { get; set; }
+     [Parameter] public string? addressId {get; set;}
+
+     public ShippingAddressModel Address { get; set; } = new();
+
+     protected override async Task OnInitializedAsync()
+     {
+          // Load the address from your service/repository     
+     }
+
+     private async Task HandleSubmit()
+     {         
+         // Nav.NavigateTo("/user/addresses");
+     }
+
 }
+

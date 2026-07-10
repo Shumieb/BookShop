@@ -129,7 +129,13 @@
 
 ## Update User Details Page
 
+- Users can view a form and use the form to update their details
+- TODO: Add functionality to update user details
+- Users will be redirected to the view user detail page when they click the cancel button
+
 ## Update Shipping Details Page
+
+-
 
 ## Update Password Page
 
