@@ -1,6 +1,6 @@
 @page "/update-shipping-details/{userId}/{addressId}"
 @using BookStore.Models
-@inject NavigationManager Nav
+@inject NavigationManager NavigationManager
 
 <PageTitle>Update Shipping Details</PageTitle>
 
@@ -61,7 +61,7 @@
 
      private async Task HandleSubmit()
      {         
-         // Nav.NavigateTo("/user/addresses");
+         // NavigationManager.NavigateTo("/user/addresses");
      }
 
 }

@@ -135,8 +135,14 @@
 
 ## Update Shipping Details Page
 
--
+- Users can view a form and use the form to update their shipping address
+- TODO: Add functionality to update shipping details
+- Users will be redirected to the view user detail page when they click the cancel button
 
 ## Update Password Page
+
+- Users can view a form and use the form to change their password
+- TODO: Add functionality to allow users to change their password
+- Users will be redirected to the view user detail page when they click the cancel button
 
 ## Update Payment Details Page
