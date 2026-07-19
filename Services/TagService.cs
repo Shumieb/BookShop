@@ -37,9 +37,18 @@ public class TagService : ITagService
             },
             new TagModel
             {
-                TagId = 4,
+                TagId = 5,
                 TagName = "Biography",
                 Description = "Life stories of notable individuals.",
+                forBooks = true,
+                forAuthors = true,
+                forCategories = false
+            },
+            new TagModel
+            {
+                TagId = 4,
+                TagName = "Bestseller",
+                Description = "The Number One Bestseller.",
                 forBooks = true,
                 forAuthors = true,
                 forCategories = false

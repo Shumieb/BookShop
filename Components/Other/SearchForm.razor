@@ -33,23 +33,30 @@
 @code{
 
     [Parameter] public string? formStyles { get; set; } 
-
     [Parameter] public string? inputsContainerStyles {get; set;}
-
     [Parameter] public string? inputsTextStyles {get; set;}
-
     [Parameter] public string? buttonStyles {get; set;}
+    [Parameter] public bool external {get;set;}
+
+    [Parameter] public EventCallback<string> PerformSearch { get; set; }
 
     private SearchModel searchModel = new();
 
-    private void HandleSearch()
+    private async Task HandleSearch()
     {
         string? term = searchModel.Query?.Trim();
 
         if (!string.IsNullOrWhiteSpace(term))
         {
             string? encoded = Uri.EscapeDataString(term);
-            NavigationManager.NavigateTo($"/books?SearchTerm={encoded}");
-        }    
+
+            if(external){
+                NavigationManager.NavigateTo($"/books?SearchTerm={encoded}");
+            }else{
+                await PerformSearch.InvokeAsync(term);
+            }         
+        }  
+
+        searchModel.Query = "";
     } 
 }

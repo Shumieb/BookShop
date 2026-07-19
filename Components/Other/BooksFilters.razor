@@ -1,34 +1,108 @@
+@inject ITagService TagService
+@inject ICategoryService CategoryService
+@inject IAuthorService AuthorService
+
 <hr>
 <div>
-    <BookFilterItem labelName="Best Sellers"/>
-    <BookFilterItem labelName="Featured"/>
-    <BookFilterItem labelName="On Sale"/>
+    @foreach(TagModel tag in tags)
+    {
+        <BookFilterItem 
+            labelName="@tag.TagName" 
+            filterType="Tag" 
+            id="@tag.TagId"
+            CheckedChanged="OnFilterChecked"
+        />
+    }
 </div>
 
 <hr>
 <div>
-    <p class="fs-5 text-secondary">By Category (6/15)</p>
-    <BookFilterItem labelName="Category1 Name"/>
-    <BookFilterItem labelName="Category2 Name"/>
-    <BookFilterItem labelName="Category3 Name"/>
-    <BookFilterItem labelName="Category4 Name"/>
-    <BookFilterItem labelName="Category5 Name"/>
-    <BookFilterItem labelName="Category6 Name"/>
-    <button class="border-0 bg-transparent text-decoration-underline fs-5 py-2">View All Categories</button>
+    <p class="fs-5 text-secondary">By Category</p>
+    @foreach(CategoryModel category in categories)
+    {
+        <BookFilterItem 
+            labelName="@category.CategoryName" 
+            filterType="Category" 
+            id="@category.CategoryId"
+            CheckedChanged="OnFilterChecked"
+        />
+    }
 </div>
 
 <hr>
 <div>
-    <p class="fs-5 text-secondary">By Author (6/20)</p>
-    <BookFilterItem labelName="Author1 Name"/>
-    <BookFilterItem labelName="Author2 Name"/>
-    <BookFilterItem labelName="Author3 Name"/>
-    <BookFilterItem labelName="Author4 Name"/>
-    <BookFilterItem labelName="Author5 Name"/>
-    <BookFilterItem labelName="Author6 Name"/>
-    <button class="border-0 bg-transparent text-decoration-underline fs-5 py-2">View All Authors</button>
+    <p class="fs-5 text-secondary">By Author</p>
+    @foreach(AuthorModel author in authors)
+    {
+        <BookFilterItem 
+            labelName="@author.AuthorName" 
+            filterType="Author" 
+            id="@author.AuthorId"
+            CheckedChanged="OnFilterChecked"
+        />
+    }
 </div>
+
+<hr/>
+<button 
+    class="btn btn-success text-white fs-5 border-success w-100 mt-2"
+    @onclick="@ApplyFiltersHandler"
+>Apply Filters</button>
 
 @code {
+    
+   [Parameter] public EventCallback<SelectedFilters> ApplyFilters { get; set; }
+
+    private List<TagModel> tags;
+    private List<AuthorModel> authors;
+    private List<CategoryModel> categories;
+
+    private List<TagModel> selectedTags = new();
+    private List<AuthorModel> selectedAuthors = new();  
+    private List<CategoryModel> selectedCategories = new();
+
+    protected override void OnInitialized()
+    {
+        tags = new TagService().GetAllTags();
+        authors = new AuthorService().GetAllAuthors();
+        categories = new CategoryService().GetAllCategories();
+    }  
+    
+    private void OnFilterChecked(FilterModel filterModel)
+    {
+        if(filterModel.isSelected){
+            if(filterModel.FilterType == "Tag"){
+                TagModel selectedTag = TagService.GetTagById(filterModel.FilterTypeId);
+                if(selectedTag.TagId > 0){
+                    selectedTags.Add(selectedTag);
+            }
+            }else if(filterModel.FilterType == "Category"){
+                CategoryModel selectedCategory = CategoryService.GetCategoryById(filterModel.FilterTypeId);
+                if(selectedCategory.CategoryId > 0){
+                    selectedCategories.Add(selectedCategory);
+                }
+            }else if(filterModel.FilterType == "Author"){
+                AuthorModel selectedAuthor = AuthorService.GetAuthorById(filterModel.FilterTypeId);
+                if(selectedAuthor.AuthorId> 0){
+                    selectedAuthors.Add(selectedAuthor);
+                }
+            }
+        }else{
+            if(filterModel.FilterType == "Tag"){
+                selectedTags.RemoveAll(t => t.TagId == filterModel.FilterTypeId);
+            }else if(filterModel.FilterType == "Category"){
+                selectedCategories.RemoveAll(c => c.CategoryId == filterModel.FilterTypeId);
+            }else if(filterModel.FilterType == "Author"){
+                selectedAuthors.RemoveAll(a => a.AuthorId == filterModel.FilterTypeId);
+            }
+        }        
+    }
+
+    private async Task ApplyFiltersHandler()
+    {
+        await ApplyFilters.InvokeAsync(
+            new SelectedFilters(selectedTags, selectedAuthors, selectedCategories)
+        );
+    }
     
 }

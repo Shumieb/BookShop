@@ -1,72 +1,21 @@
 using BookShop.Models;
+using BookShop.Helper;
 
 public class BookService : IBookService
 {
-    private readonly List<TagModel> _tags;
-    private readonly List<AuthorModel> _authors;
-    private readonly List<CategoryModel> _categories;
     private readonly List<BookModel> _books;
 
     public BookService()
     {
-        // Tags
-        _tags = new()
-        {
-            new TagModel { TagId = 1, TagName = "Fantasy", forBooks = true, forAuthors = false, forCategories = true },
-            new TagModel { TagId = 2, TagName = "Classic", forBooks = true, forAuthors = true, forCategories = true },
-            new TagModel { TagId = 3, TagName = "Sci-Fi", forBooks = true, forAuthors = false, forCategories = true },
-            new TagModel { TagId = 4, TagName = "Bestseller", forBooks = true, forAuthors = true, forCategories = false }
-        };
-
-        // Authors
-        _authors = new()
-        {
-            new AuthorModel
-            {
-                AuthorId = 1,
-                AuthorName = "J.R.R. Tolkien",
-                Statement = "Creator of Middle-earth",
-                Biography = "English writer and philologist.",
-                AuthorTags = new() { _tags[1] }
-            },
-            new AuthorModel
-            {
-                AuthorId = 2,
-                AuthorName = "Isaac Asimov",
-                Statement = "Science fiction pioneer",
-                Biography = "American writer and professor.",
-                AuthorTags = new() { _tags[2] }
-            }
-        };
-
-        // Categories
-        _categories = new()
-        {
-            new CategoryModel
-            {
-                CategoryId = 1,
-                CategoryName = "Fantasy",
-                Description = "Magic, mythical creatures, epic worlds.",
-                CategoryTags = new() { _tags[0] }
-            },
-            new CategoryModel
-            {
-                CategoryId = 2,
-                CategoryName = "Science Fiction",
-                Description = "Futuristic, space, technology.",
-                CategoryTags = new() { _tags[2] }
-            }
-        };
-
         // Books
-        _books = new()
-        {
+        _books =
+        [
             new BookModel
             {
                 BookId = 1,
                 Title = "The Hobbit",
                 AuthorId = 1,
-                Author = _authors[0],
+                Author = new(){ AuthorId = 1, AuthorName = "J.R.R. Tolkien", Statement = "Creator of Middle-earth", Biography = "English writer and philologist."},
                 PageCount = 310,
                 PublishedOn = new DateTime(1937, 9, 21),
                 ISBN = "1234567890123",
@@ -75,8 +24,24 @@ public class BookService : IBookService
                 Price = 12.99m,
                 StockLevel = 50,
                 CategoryId = 1,
-                Category = _categories[0],
-                BookTags = new() { _tags[0], _tags[1] },
+                Category = new(){ CategoryId = 1, CategoryName = "Fantasy", Description = "Magic, mythical creatures, epic worlds."},
+                BookTags = new(){
+                    new(){
+                        TagId = 1,
+                        TagName = "Fantasy",
+                        Description = "Magic, mythical creatures, epic worlds.",
+                        forBooks = true,
+                        forAuthors = false,
+                        forCategories = true
+                    },
+                    new(){
+                        TagId = 2,
+                        TagName = "Classic",
+                        Description = "Timeless literature.",
+                        forBooks = true,
+                        forAuthors = true,
+                        forCategories = true
+                    }},
                 BookImageUrls = new() { "https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg" }
             },
             new BookModel
@@ -84,7 +49,7 @@ public class BookService : IBookService
                 BookId = 3,
                 Title = "The Hobbit 2",
                 AuthorId = 1,
-                Author = _authors[0],
+                Author = new(){ AuthorId = 1, AuthorName = "J.R.R. Tolkien", Statement = "Creator of Middle-earth", Biography = "English writer and philologist."},
                 PageCount = 310,
                 PublishedOn = new DateTime(1937, 9, 21),
                 ISBN = "1234567890124",
@@ -93,8 +58,32 @@ public class BookService : IBookService
                 Price = 14.99m,
                 StockLevel = 50,
                 CategoryId = 1,
-                Category = _categories[0],
-                BookTags = new() { _tags[0], _tags[1], _tags[3] },
+                Category = new(){ CategoryId = 1, CategoryName = "Fantasy", Description = "Magic, mythical creatures, epic worlds."},
+                BookTags = new() {
+                    new(){
+                        TagId = 1,
+                        TagName = "Fantasy",
+                        Description = "Magic, mythical creatures, epic worlds.",
+                        forBooks = true,
+                        forAuthors = false,
+                        forCategories = true
+                    },
+                    new(){
+                        TagId = 2,
+                        TagName = "Classic",
+                        Description = "Timeless literature.",
+                        forBooks = true,
+                        forAuthors = true,
+                        forCategories = true
+                    },
+                    new(){
+                        TagId = 4,
+                        TagName = "Bestseller",
+                        Description = "The Number One Bestseller.",
+                        forBooks = true,
+                        forAuthors = true,
+                        forCategories = false
+                    }},
                 BookImageUrls = new() { "https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg" }
             },
             new BookModel
@@ -102,7 +91,7 @@ public class BookService : IBookService
                 BookId = 2,
                 Title = "Foundation",
                 AuthorId = 2,
-                Author = _authors[1],
+                Author = new(){ AuthorId = 2, AuthorName = "Isaac Asimov", Statement = "Science fiction pioneer", Biography = "American writer and professor."},
                 PageCount = 255,
                 PublishedOn = new DateTime(1951, 6, 1),
                 ISBN = "9876543210123",
@@ -111,8 +100,24 @@ public class BookService : IBookService
                 Price = 10.99m,
                 StockLevel = 30,
                 CategoryId = 2,
-                Category = _categories[1],
-                BookTags = new() { _tags[2], _tags[3] },
+                Category = new(){ CategoryId = 2, CategoryName = "Science Fiction", Description = "Futuristic, space, technology."},
+                BookTags = new(){
+                    new(){
+                        TagId = 3,
+                        TagName = "Sci-Fi",
+                        Description = "Futuristic, space, technology.",
+                        forBooks = true,
+                        forAuthors = false,
+                        forCategories = true
+                    },
+                    new(){
+                        TagId = 4,
+                        TagName = "Bestseller",
+                        Description = "The Number One Bestseller.",
+                        forBooks = true,
+                        forAuthors = true,
+                        forCategories = false
+                    }},
                 BookImageUrls = new() { "https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg" }
             },
             new BookModel
@@ -120,7 +125,7 @@ public class BookService : IBookService
                 BookId = 4,
                 Title = "Foundation 2",
                 AuthorId = 2,
-                Author = _authors[1],
+                Author = new(){ AuthorId = 2, AuthorName = "Isaac Asimov", Statement = "Science fiction pioneer", Biography = "American writer and professor."},
                 PageCount = 255,
                 PublishedOn = new DateTime(1951, 6, 1),
                 ISBN = "9876543210127",
@@ -129,8 +134,24 @@ public class BookService : IBookService
                 Price = 10.99m,
                 StockLevel = 30,
                 CategoryId = 2,
-                Category = _categories[1],
-                BookTags = new() { _tags[2], _tags[3] },
+                Category = new(){ CategoryId = 2, CategoryName = "Science Fiction", Description = "Futuristic, space, technology."},
+                BookTags = new(){
+                    new(){
+                        TagId = 3,
+                        TagName = "Sci-Fi",
+                        Description = "Futuristic, space, technology.",
+                        forBooks = true,
+                        forAuthors = false,
+                        forCategories = true
+                    },
+                    new(){
+                        TagId = 4,
+                        TagName = "Bestseller",
+                        Description = "The Number One Bestseller.",
+                        forBooks = true,
+                        forAuthors = true,
+                        forCategories = false
+                    }},
                 BookImageUrls = new() { "https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg" }
             },
             new BookModel
@@ -138,7 +159,7 @@ public class BookService : IBookService
                 BookId = 5,
                 Title = "Foundation 3",
                 AuthorId = 2,
-                Author = _authors[1],
+                Author = new(){ AuthorId = 2, AuthorName = "Isaac Asimov", Statement = "Science fiction pioneer", Biography = "American writer and professor."},
                 PageCount = 255,
                 PublishedOn = new DateTime(1951, 6, 1),
                 ISBN = "9876543210128",
@@ -147,8 +168,24 @@ public class BookService : IBookService
                 Price = 9.99m,
                 StockLevel = 30,
                 CategoryId = 2,
-                Category = _categories[1],
-                BookTags = new() { _tags[2], _tags[3] },
+                Category = new(){ CategoryId = 2, CategoryName = "Science Fiction", Description = "Futuristic, space, technology."},
+                BookTags = new(){
+                    new(){
+                        TagId = 3,
+                        TagName = "Sci-Fi",
+                        Description = "Futuristic, space, technology.",
+                        forBooks = true,
+                        forAuthors = false,
+                        forCategories = true
+                    },
+                    new(){
+                        TagId = 4,
+                        TagName = "Bestseller",
+                        Description = "The Number One Bestseller.",
+                        forBooks = true,
+                        forAuthors = true,
+                        forCategories = false
+                    }},
                 BookImageUrls = new() { "https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg" }
             },
             new BookModel
@@ -156,7 +193,7 @@ public class BookService : IBookService
                 BookId = 6,
                 Title = "The Hobbit 3",
                 AuthorId = 1,
-                Author = _authors[0],
+                Author = new(){ AuthorId = 1, AuthorName = "J.R.R. Tolkien", Statement = "Creator of Middle-earth", Biography = "English writer and philologist."},
                 PageCount = 310,
                 PublishedOn = new DateTime(1937, 9, 21),
                 ISBN = "1234567890125",
@@ -165,11 +202,26 @@ public class BookService : IBookService
                 Price = 12.99m,
                 StockLevel = 50,
                 CategoryId = 1,
-                Category = _categories[0],
-                BookTags = new() { _tags[0], _tags[1] },
+                Category = new(){ CategoryId = 1, CategoryName = "Fantasy", Description = "Magic, mythical creatures, epic worlds."},
+                BookTags = new(){
+                    new(){
+                        TagId = 1,
+                        TagName = "Fantasy",
+                        Description = "Magic, mythical creatures, epic worlds.",
+                        forBooks = true,
+                        forAuthors = false,
+                        forCategories = true
+                    }, new(){
+                        TagId = 2,
+                        TagName = "Classic",
+                        Description = "Timeless literature.",
+                        forBooks = true,
+                        forAuthors = true,
+                        forCategories = true
+                    }},
                 BookImageUrls = new() { "https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg" }
             },
-        };
+        ];
     }
 
     public List<BookModel> GetAllBooks() => _books;
@@ -198,4 +250,47 @@ public class BookService : IBookService
             b.Author.AuthorName.ToLower().Contains(search)
         ).ToList();
     }
+
+    public List<BookModel> GetBooksByFilters(SelectedFilters filters, string searchTerm = "")
+    {
+        var filteredBooks = _books.AsEnumerable();
+
+        // Search term filter
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            var term = searchTerm.Trim().ToLower();
+
+            filteredBooks = filteredBooks.Where(b =>
+                b.Title.ToLower().Contains(term) ||
+                b.Author.AuthorName.ToLower().Contains(term)
+            );
+        }
+
+        // Tag filter
+        if (filters.Tags.Any())
+        {
+            filteredBooks = filteredBooks.Where(b =>
+                b.BookTags.Any(t => filters.Tags.Any(ft => ft.TagId == t.TagId))
+            );
+        }
+
+        // Author filter
+        if (filters.Authors.Any())
+        {
+            filteredBooks = filteredBooks.Where(b =>
+                filters.Authors.Any(fa => fa.AuthorId == b.AuthorId)
+            );
+        }
+
+        // Category filter
+        if (filters.Categories.Any())
+        {
+            filteredBooks = filteredBooks.Where(b =>
+                filters.Categories.Any(fc => fc.CategoryId == b.CategoryId)
+            );
+        }
+
+        return filteredBooks.ToList();
+    }
+
 }

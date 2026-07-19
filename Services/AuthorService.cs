@@ -8,12 +8,7 @@ public class AuthorService : IAuthorService
     public AuthorService()
     {
         // Tags (shared with BookService style)
-        _tags = new()
-        {
-            new TagModel { TagId = 1, TagName = "Fantasy", forBooks = true, forAuthors = false, forCategories = true },
-            new TagModel { TagId = 2, TagName = "Classic", forBooks = true, forAuthors = true, forCategories = true },
-            new TagModel { TagId = 3, TagName = "Sci-Fi", forBooks = true, forAuthors = false, forCategories = true }
-        };
+        _tags = new TagService().GetAllTags();
 
         // Authors
         _authors = new()

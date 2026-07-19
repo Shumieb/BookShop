@@ -1,4 +1,5 @@
 using BookShop.Models;
+using BookShop.Helper;
 
 public interface IBookService
 {
@@ -8,4 +9,5 @@ public interface IBookService
     List<BookModel> GetBooksByCategoryId(int categoryId);
     List<BookModel> GetBooksByAuthorId(int authorId);
     List<BookModel> GetBooksBySearchParam(string search);
+    List<BookModel> GetBooksByFilters(SelectedFilters filters, string searchTerm);
 }

@@ -1,15 +1,29 @@
 <div class="d-flex justify-content-between align-items-center">
     <label class="custom-checkbox">         
-        <input type="checkbox" @bind="isChecked" />
+        <input type="checkbox" checked="@isChecked" @onchange="OnCheckedChanged" />
         <span class="box"></span>    
-        <span class="label-text ps-1 fs-5">@labelName</span>                   
+        <span class="label-text ps-1 fs-5 text-capitalize">@labelName</span>                   
     </label>      
 </div>
 
 @code {
 
-    [Parameter]
-    public string? labelName {get;set;}
+    [Parameter] public string? labelName {get;set;}
+    [Parameter] public string filterType {get;set;}
+    [Parameter] public int id {get;set;}
+    [Parameter] public EventCallback<FilterModel> CheckedChanged { get; set; }
+
+    private FilterModel filterModel = new FilterModel();
 
     private bool isChecked;
+
+    private async Task OnCheckedChanged(ChangeEventArgs e)
+    {
+        isChecked = e.Value is bool boolValue && boolValue;
+        filterModel.FilterType = filterType;
+        filterModel.FilterTypeId = id;
+        filterModel.isSelected = isChecked;
+
+        await CheckedChanged.InvokeAsync(filterModel);
+    }
 }

@@ -9,10 +9,7 @@
 ## Home Page
 
 - Users can search for books using the author name, book title
-- TODO: Add logic to handle search
-
 - Users can view best sellers
-
 - Clicking on the book title links to the book page
 
 - Clicking on the "Add to Basket" button add a book to the basket
@@ -32,18 +29,9 @@
 - TODO: Implement pagnation
 
 - There is a search and filter section
-
 - Users can search by author name and by book title
-- TODO: Implement search
-
 - Users can filter books by the author name
-- TODO: Implement logic to filter by author name
-
-- Users can click the button to view more author name
-- TODO: Implement logic to view more authors when the button is clicked
-
 - Users can filter books by the category name
-- TODO: Implement logic to filter by category name
 
 ## Book Page
 

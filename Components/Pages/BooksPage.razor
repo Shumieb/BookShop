@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.WebUtilities
 @inject NavigationManager NavigationManager
 @inject IBookService BookService
+@rendermode InteractiveServer
 
 <PageTitle>Books</PageTitle>
 
@@ -15,12 +16,14 @@
                     formStyles="mx-auto" 
                     inputsTextStyles="form-control fs-5 border-success w-100 mb-1"
                     buttonStyles="btn btn-success text-white fs-5 border-success w-100 mt-2"
-                    />
+                    external=false
+                    PerformSearch="PerformSearch"
+                />
             </div>
 
             <h3 class="text-center text-decoration-underline">Filter</h3>
             <div>
-                <BooksFilters/>
+                <BooksFilters ApplyFilters="ApplyFilters"/>
             </div>   
         </div>
     </section>
@@ -28,11 +31,19 @@
     <!-- Book List section -->
     <section class="col-9">
         <h1 class="fs-2 text-center pb-4 text-decoration-underline">Explore our Book Collection</h1>
-        @if(books == null || books.Count == 0)
+        @if(books.Count == 0)
         {
-            @if(!string.IsNullOrWhiteSpace(searchTerm))
+            @if(searching && !filtersApplied)
             {
                 <p class="text-center fs-4">No books found for search term: <b>@searchTerm</b></p>
+            }
+            else if(filtersApplied && !searching)
+            {
+                <p class="text-center fs-4">No books found for the selected filters.</p>
+            }
+            else if(filtersApplied && searching)
+            {
+                <p class="text-center fs-4">No books found for the selected filters and search term: <b>@searchTerm</b></p>
             }
             else
             {
@@ -41,6 +52,10 @@
         }
         else
         {
+            @if(searching)
+                {
+                    <p class="text-center fs-4">Search results for: <b>@searchTerm</b></p>
+                }
            <section class="row row-cols-3 justify-content-center">
                 @foreach (var bookDetails in books)
                 {
@@ -48,10 +63,13 @@
                 }
             </section>
         }   
-        @if(!string.IsNullOrWhiteSpace(searchTerm))
+        @if(searching)
         {
             <div class="text-center mb-4">
-                <NavLink href="/books" class="btn btn-success text-white fs-5 border-success">View All Books</NavLink>  
+                <button 
+                    class="btn btn-success text-white fs-5 border-success" 
+                    @onclick="@ViewAllBooks"
+                >View All Books</button>  
             </div>     
         }          
     </section>
@@ -59,7 +77,9 @@
 
 @code{
     private List<BookModel> books;    
-    private string searchTerm;
+    private string? searchTerm {get;set;}
+    private bool searching {get;set;} = false;
+    private bool filtersApplied {get;set;} = false;
 
     protected override void OnInitialized()
     {
@@ -68,14 +88,36 @@
 
         if (query.TryGetValue("SearchTerm", out var term))
         {
-
+            searching=true;
             searchTerm = term.ToString();
             books = BookService.GetBooksBySearchParam(searchTerm);
         }
         else
-        {
+        {      
+            searching=false;      
             books = BookService.GetAllBooks();
         }
+    }
+
+    private void ViewAllBooks()
+    {
+        books = BookService.GetAllBooks();
+        searching=false;
+        filtersApplied=false;
+        NavigationManager.NavigateTo("/books");
+    }
+
+    private async Task PerformSearch(string term)
+    {
+        searching=true;
+        searchTerm = term;
+        books = BookService.GetBooksBySearchParam(searchTerm);
+    }
+
+    private async Task ApplyFilters(SelectedFilters selections)
+    {
+        filtersApplied=true;
+        books = BookService.GetBooksByFilters(selections, searchTerm);
     }
 }
 

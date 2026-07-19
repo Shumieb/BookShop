@@ -7,15 +7,9 @@ public class CategoryService : ICategoryService
 
     public CategoryService()
     {
-        // Tags (consistent with BookService + AuthorService)
-        _tags = new()
-        {
-            new TagModel { TagId = 1, TagName = "Fantasy", forBooks = true, forAuthors = false, forCategories = true },
-            new TagModel { TagId = 2, TagName = "Classic", forBooks = true, forAuthors = true, forCategories = true },
-            new TagModel { TagId = 3, TagName = "Sci-Fi", forBooks = true, forAuthors = false, forCategories = true }
-        };
 
-        // Categories
+        _tags = new TagService().GetAllTags();
+
         _categories = new()
         {
             new CategoryModel
