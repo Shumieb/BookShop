@@ -20,7 +20,7 @@
 <section class="mb-3">
     <h2>Author's Note</h2>
     <p class="fs-5 text-secondary">@bookDetails.AuthorBookNote</p>
-    <NavLink href="/books" class="fs-5 text-success">View Other Books By this Author</NavLink>
+    <NavLink href="@GetAuthorUrl(bookDetails.Author.AuthorId)" class="fs-5 text-success">View Other Books By this Author</NavLink>
 </section>
 
 <hr>
@@ -68,4 +68,6 @@
             bookDetails = BookService.GetBookById(bookId);
         }
     }    
+
+    private string GetAuthorUrl(int id) => $"/author/{id}";
 }

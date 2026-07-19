@@ -11,23 +11,18 @@
 
     <div class="col py-2 pe-2 ps-4 d-flex flex-column justify-content-between">
         <div>
-            <p class="h1 p0-0 m-0 fs-2"> Author Name </p>    
+            <p class="h1 p0-0 m-0 fs-2"> @AuthorDetails.AuthorName </p>    
             <p class="fs-5 text-secondary fst-italic">Sold 200 books this month</p>           
         
             <p class="fs-5 text-secondary my-3">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                Odit sequi perferendis ea maxime vitae natus accusamus iure 
-                dolorem accusantium in earum animi ad, nobis magnam.
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                Odit sequi perferendis ea maxime vitae natus accusamus iure 
-                dolorem accusantium in earum animi ad, nobis magnam.
+                @AuthorDetails.Statement
             </p>     
 
             <div class="d-flex align-items-center justify-content-start my-2">
                 <p class="my-2 mx-2 fs-5 border border-2 border-success rounded p-2 text-success">BestSeller</p>
                 <p class="my-2 mx-2 fs-5 border border-2 border-success rounded p-2 text-success">Featured</p>
             </div> 
-        </div>   
+        </div>     
 
         <div class="text-end">              
             <button class="btn btn-success fs-5">Follow this Author</button>
@@ -35,3 +30,7 @@
         
     </div>
 </section>
+
+@code {
+    [Parameter] public AuthorModel AuthorDetails { get; set; } = new AuthorModel();
+}

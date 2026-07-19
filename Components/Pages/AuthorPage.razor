@@ -1,36 +1,42 @@
-@page "/author/{authorId}"
-@rendermode InteractiveServer
+@page "/author/{authorId:int}"
+@inject IBookService BookService
+@inject IAuthorService AuthorService
 
 <PageTitle>Author</PageTitle>
 
-<AuthorPageHero/>
+<AuthorPageHero AuthorDetails="authorDetails" />
 
 <hr>
 <section>
     <h2>Biography</h2>
-    <p class="fs-5 text-secondary py-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus voluptatem ipsam distinctio sapiente quo! Voluptatem, maxime. Officiis ex autem quam facilis enim amet nemo cum id explicabo eligendi dolor, debitis eum ipsa dolorum, officia animi. Rem nisi provident quis vel soluta qui voluptatem at? Eligendi omnis dolorum doloribus eum molestias.</p>
+    <p class="fs-5 text-secondary py-2">@authorDetails.Biography</p>
 </section>
 
 <hr>
 <section>
     <h2>Publications</h2>
-    <div class="row row-cols-4 justify-content-center mt-3">
-        <BookCard/>
-        <BookCard/>
-        <BookCard/>
-        <BookCard/>
-        <BookCard/>
-        <BookCard/>
+    <div class="row row-cols-4 justify-content-start mt-3">
+         @foreach (BookModel bookDetails in books)
+        {
+            <BookCard BookDetails="bookDetails" />
+        }
     </div>
 </section>
 
-
-
 @code {
     
-    [Parameter]
-    public string? authorId { get; set; }
-  
+    [Parameter] public int authorId { get; set; }
 
-    
+    private AuthorModel authorDetails { get; set; } = new AuthorModel();
+
+    private List<BookModel> books {get; set;} = new List<BookModel>();
+  
+  protected override void OnInitialized()
+    {
+        if (authorId > 0)
+        {
+            authorDetails = AuthorService.GetAuthorById(authorId);
+            books = BookService.GetBooksByAuthorId(authorId);
+        }
+    }        
 }

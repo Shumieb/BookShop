@@ -57,7 +57,7 @@
                     <p class="text-center fs-4">Search results for: <b>@searchTerm</b></p>
                 }
            <section class="row row-cols-3 justify-content-center">
-                @foreach (var bookDetails in books)
+                @foreach (BookModel bookDetails in books)
                 {
                     <BookCard BookDetails="bookDetails" />
                 }
