@@ -7,13 +7,13 @@
     >
     <div class="card-body">
         <NavLink href="book/one" class="card-title fw-bold pe-2 fs-5 text-decoration-none">
-            This is a book title
+            @bookDetails.Title
             <span class="fs-6 text-secondary"><i class="bi bi-link-45deg"></i></span>
         </NavLink>               
-        <p class="card-text text-secondary fs-6">by Author Name</p>
-        <p class="card-text fs-6 pb-0.5 mb-0.5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam a voluptates molestiae.</p>   
+        <p class="card-text text-secondary fs-6">@bookDetails.Author.AuthorName</p>
+        <p class="card-text fs-6 pb-0.5 mb-0.5">@bookDetails.Summary</p>   
                   
-        <h5 class="card-title fw-bold text-success ps-2 fs-5 pt-1">£30.00</h5>
+        <h5 class="card-title fw-bold text-success ps-2 fs-5 pt-1">£@bookDetails.Price.ToString("F2")</h5>
 
         <div class="d-flex align-items-center justify-content-between">
             <button class="btn btn-success fs-6">Add to Basket</button>
@@ -30,5 +30,6 @@
 </div>
 
 @code{
-
+    [Parameter] public BookModel bookDetails { get; set; } = new BookModel(); 
+    
 }

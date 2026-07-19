@@ -1,5 +1,5 @@
 @page "/book/{bookId}"
-@rendermode InteractiveServer
+@inject IBookService BookService
 
 <PageTitle>Book</PageTitle>
 
@@ -9,7 +9,6 @@
 
 <section class="mb-3">
     <h2>Book Details</h2>
-
     <p class="fs-5 m-0 p-0 text-secondary">ISBN: 515165161665</p>
     <p class="fs-5 m-0 p-0 text-secondary">Published: November 2025</p>
     <p class="fs-5 m-0 p-0 text-secondary">Number of Pages: 500</p>    
@@ -58,8 +57,7 @@
 
 @code {
     
-    [Parameter]
-    public string? bookId { get; set; }
+    [Parameter] public string? bookId { get; set; }
   
 
     

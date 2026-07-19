@@ -132,7 +132,43 @@ public class BookService : IBookService
                 Category = _categories[1],
                 BookTags = new() { _tags[2], _tags[3] },
                 BookImageUrls = new() { "https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg" }
-            }
+            },
+            new BookModel
+            {
+                BookId = 5,
+                Title = "Foundation 3",
+                AuthorId = 2,
+                Author = _authors[1],
+                PageCount = 255,
+                PublishedOn = new DateTime(1951, 6, 1),
+                ISBN = "9876543210128",
+                Summary = "A mathematician predicts the fall of the Galactic Empire.",
+                AuthorBookNote = "A cornerstone of sci-fi literature.",
+                Price = 9.99m,
+                StockLevel = 30,
+                CategoryId = 2,
+                Category = _categories[1],
+                BookTags = new() { _tags[2], _tags[3] },
+                BookImageUrls = new() { "https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg" }
+            },
+            new BookModel
+            {
+                BookId = 6,
+                Title = "The Hobbit 3",
+                AuthorId = 1,
+                Author = _authors[0],
+                PageCount = 310,
+                PublishedOn = new DateTime(1937, 9, 21),
+                ISBN = "1234567890125",
+                Summary = "Bilbo Baggins goes on an unexpected journey 2.",
+                AuthorBookNote = "One of Tolkien's most beloved works 2.",
+                Price = 12.99m,
+                StockLevel = 50,
+                CategoryId = 1,
+                Category = _categories[0],
+                BookTags = new() { _tags[0], _tags[1] },
+                BookImageUrls = new() { "https://images.pexels.com/photos/2422178/pexels-photo-2422178.jpeg" }
+            },
         };
     }
 

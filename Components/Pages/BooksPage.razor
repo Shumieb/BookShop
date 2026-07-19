@@ -1,4 +1,5 @@
 @page "/books"
+@inject IBookService BookService
 
 <PageTitle>Books</PageTitle>
 
@@ -24,26 +25,24 @@
 
     <!-- Book List section -->
     <section class="col-9">
-
         <h1 class="fs-2 text-center pb-4 text-decoration-underline">Explore our Book Collection</h1>
-
         <section class="row row-cols-3 justify-content-center">
-            <BookCard/>
-            <BookCard/>
-            <BookCard/>
-            <BookCard/>
-            <BookCard/>
-            <BookCard/>
-            <BookCard/>
-            <BookCard/>
-            <BookCard/>
-            <BookCard/>
-            <BookCard/>
-            <BookCard/>
+            @foreach (var bookDetails in books)
+            {
+                <BookCard BookDetails="bookDetails" />
+            }
         </section>
-
     </section>
 </div>
+
+@code{
+private List<BookModel> books;
+
+    protected override void OnInitialized()
+    {
+        books = BookService.GetAllBooks();
+    }
+}
 
 
 

@@ -19,7 +19,7 @@
 - TODO: Add logic to add a book to the basket
 
 - If a user is logged in they can view the add to watchlist button
-- Clicking on the "Add to Watchlisr" button add a book to the user watchlist
+- Clicking on the "Add to Watchlist" button add a book to the user watchlist
 - TODO: Add logic to add a book to the user watchlist
 
 - When clicked the "View all Books" buttons take you to the books page
