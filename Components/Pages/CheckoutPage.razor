@@ -1,0 +1,225 @@
+@page "/checkout/{userId}"
+@rendermode InteractiveServer
+@inject NavigationManager NavigationManager
+
+<PageTitle>Checkout</PageTitle>
+
+<h3 class="text-center text-decoration-underline mb-4">Checkout</h3>
+
+<div class="row">
+
+    <!-- LEFT COLUMN: SHIPPING DETAILS -->
+    <div class="col-md-6">
+
+        <h4>Shipping Details</h4>
+        <div class="card mb-3">
+            <div class="card-body">
+                <InputSelect class="form-select mb-2 fw-bold fs-5 w-50"
+                             @bind-Value="SelectedAddress.ShippingAddressNickname">
+                    <option value="">Select Address</option>
+                    <option value="Home">Home</option>
+                    <option value="Work">Work</option>
+                </InputSelect>
+                <p class="py-0 my-0 fs-5 ps-1">ShippingAddress Street</p>
+                <p class="py-0 my-0 fs-5 ps-1"> ShippingAddress City</p>
+                <p class="py-0 my-0 fs-5 ps-1">ShippingAddress Postcode</p>
+                <p class="py-0 my-0 fs-5 ps-1">ShippingAddress Country</p>                
+            </div>
+        </div>
+
+        <h4>Delivery Options</h4>
+        <div class="card mb-3 fs-5">
+            <div class="card-body">
+                <div class="form-check">
+                    <InputRadioGroup Name="DeliveryMethods" @bind-Value="selectedDeliveryMethod">
+                    <div>
+                        <InputRadio class="form-check-input"
+                            @bind-Value="DeliveryMethod"/>
+                        <label class="form-check-label">Standard Delivery - £2.99</label>
+                    </div>
+                    <div>
+                        <InputRadio class="form-check-input"
+                            @bind-Value="DeliveryMethod"/>
+                        <label class="form-check-label">Fast Delivery - £5.99</label>
+                    </div>                        
+                    </InputRadioGroup>
+                </div>             
+            </div>
+        </div>
+
+        <h4>Payment Method</h4>
+        <div class="card mb-3 fs-5">
+            <div class="card-body">
+                <div class="form-check">
+                    <InputRadioGroup Name="PaymentTypes" @bind-Value="selectedPaymentMethod">
+                    <div>
+                        <InputRadio class="form-check-input"
+                            @bind-Value="PaymentMethod"/>
+                        <label class="form-check-label">Credit / Debit Card</label>
+                    </div>
+                    <div>
+                        <InputRadio class="form-check-input"
+                            @bind-Value="PaymentMethod"/>
+                        <label class="form-check-label">PayPal</label>
+                    </div>                        
+                    </InputRadioGroup>
+                </div>  
+                <hr/>
+                <EditForm Model="@card" OnValidSubmit="@HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3 fs-5">
+        <div >
+            <!-- Cardholder Name -->
+            <div class="mb-3">
+                <label class="form-label">Cardholder Name</label>
+                <InputText class="form-control border-success" @bind-Value="card.CardholderName" />
+                <ValidationMessage For="@(() => card.CardholderName)" />
+            </div>
+
+            <!-- Card Number -->
+            <div class="mb-3">
+                <label class="form-label">Card Number</label>
+                <InputText class="form-control border-success" @bind-Value="card.CardNumber" />
+                <ValidationMessage For="@(() => card.CardNumber)" />
+            </div>
+
+            <!-- Expiry + CVV -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Expiry (MM/YY)</label>
+                    <InputText class="form-control border-success" @bind-Value="card.Expiry" />
+                    <ValidationMessage For="@(() => card.Expiry)" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">CVV</label>
+                    <InputText class="form-control border-success" @bind-Value="card.Cvv" />
+                    <ValidationMessage For="@(() => card.Cvv)" />
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+                           
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT COLUMN: ORDER SUMMARY -->
+    <div class="col-md-6 fs-5">
+
+        <h4>Your Order</h4>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <p class="py-0 my-0">Book Title (x 2)</p>
+                    <p class="py-0 my-0">£@(20 * 2)</p>
+                </div>
+                 <div class="d-flex justify-content-between mb-2">
+                    <p class="py-0 my-0">Book Title (x 2)</p>
+                    <p class="py-0 my-0">£@(20 * 2)</p>
+                </div>
+                 <div class="d-flex justify-content-between mb-2">
+                    <p class="py-0 my-0">Book Title (x 2)</p>
+                    <p class="py-0 my-0">£@(20 * 2)</p>
+                </div>
+
+                <hr />
+
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Cart Total</th>
+                            <td>£@CartTotal</td>
+                        </tr>
+                        <tr>
+                            <th>Discount</th>
+                            <td>@(DiscountAmount > 0 ? $"-£{DiscountAmount}" : "£0")</td>
+                        </tr>
+                        <tr>
+                            <th>Delivery Charge</th>
+                            <td>£@DeliveryCharge</td>
+                        </tr>
+                        <tr>
+                            <th>Total Payable</th>
+                            <td>£@FinalTotal</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-success w-100 fs-5"
+                        @onclick="PlaceOrder">
+                    Place Order
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter] public string? userId { get; set; }
+
+    public List<CartItem> CartItems { get; set; } = new();
+    public ShippingAddressModel SelectedAddress { get; set; } = new();
+
+    public string PaymentMethod { get; set; } = "Card";
+
+    public string selectedPaymentMethod { get; set; } = "Card";
+
+    public string DeliveryMethod { get; set; } = "Standard";
+    public string selectedDeliveryMethod { get; set; } = "Standard";
+    public string DiscountCode { get; set; } = string.Empty;
+
+    public decimal DiscountAmount { get; set; }
+    public decimal DeliveryCharge { get; set; } = 5.00m; // Example delivery charge
+    public decimal CartTotal => CartItems.Sum(i => i.Book.Price * i.Quantity);
+    public decimal FinalTotal => CartTotal - DiscountAmount;
+
+    protected override async Task OnInitializedAsync()
+    {
+       // CartItems = await CartService.GetCartItems();
+        // SelectedAddress = await AddressService.GetSelectedAddress();
+    }
+
+    private void ApplyDiscount()
+    {
+        if (DiscountCode == "BOOK10")
+            DiscountAmount = CartTotal * 0.10m;
+        else if (DiscountCode == "SAVE5")
+            DiscountAmount = 5m;
+        else
+            DiscountAmount = 0;
+    }
+
+    private async Task PlaceOrder()
+    {
+        /*
+        var order = new Order
+        {
+            Items = CartItems,
+            Address = SelectedAddress,
+            PaymentMethod = PaymentMethod,
+            Total = FinalTotal,
+            DiscountApplied = DiscountAmount,
+            OrderDate = DateTime.Now
+        };
+
+        await OrderService.CreateOrder(order);
+
+        Nav.NavigateTo("/order/confirmation");
+        */
+    }
+
+    private PaymentCardModel card = new();
+
+    private void HandleSubmit()
+    {
+        // Process payment here
+    }
+
+    
+}
+
