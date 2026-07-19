@@ -6,10 +6,10 @@
         style="height: 14rem;"
     >
     <div class="card-body">
-        <NavLink href="book/one" class="card-title fw-bold pe-2 fs-5 text-decoration-none">
+        <a href="@GetBookUrl(bookDetails.BookId)" class="card-title fw-bold pe-2 fs-5 text-decoration-none">
             @bookDetails.Title
             <span class="fs-6 text-secondary"><i class="bi bi-link-45deg"></i></span>
-        </NavLink>               
+        </a>               
         <p class="card-text text-secondary fs-6">@bookDetails.Author.AuthorName</p>
         <p class="card-text fs-6 pb-0.5 mb-0.5">@bookDetails.Summary</p>   
                   
@@ -31,5 +31,7 @@
 
 @code{
     [Parameter] public BookModel bookDetails { get; set; } = new BookModel(); 
+
+    private string GetBookUrl(int id) => $"/book/{id}";
     
 }

@@ -1,25 +1,25 @@
-@page "/book/{bookId}"
+@page "/book/{bookId:int}"
 @inject IBookService BookService
 
 <PageTitle>Book</PageTitle>
 
-<BookPageHero/>
+<BookPageHero BookDetails="bookDetails" />
 
 <hr>
 
 <section class="mb-3">
     <h2>Book Details</h2>
-    <p class="fs-5 m-0 p-0 text-secondary">ISBN: 515165161665</p>
-    <p class="fs-5 m-0 p-0 text-secondary">Published: November 2025</p>
-    <p class="fs-5 m-0 p-0 text-secondary">Number of Pages: 500</p>    
-    <p class="fs-5 m-0 p-0 text-secondary">Copies In Stock: 50</p>  
+    <p class="fs-5 m-0 p-0 text-secondary">ISBN: @bookDetails.ISBN</p>
+    <p class="fs-5 m-0 p-0 text-secondary">Published: @bookDetails.PublishedOn.ToString("MMMM yyyy")</p>
+    <p class="fs-5 m-0 p-0 text-secondary">Number of Pages: @bookDetails.PageCount</p>    
+    <p class="fs-5 m-0 p-0 text-secondary">Copies In Stock: @bookDetails.StockLevel</p>  
 </section>
 
 <hr>
 
 <section class="mb-3">
     <h2>Author's Note</h2>
-    <p class="fs-5 text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet cumque quod eaque maiores dolorem vel obcaecati, eius facere facilis necessitatibus in omnis dolorum nihil itaque qui fugit tempore. Rem, soluta officiis quod quibusdam voluptatem aspernatur libero vel amet, repudiandae, unde excepturi necessitatibus similique odio voluptatum veritatis. Reiciendis cupiditate non ad.</p>
+    <p class="fs-5 text-secondary">@bookDetails.AuthorBookNote</p>
     <NavLink href="/books" class="fs-5 text-success">View Other Books By this Author</NavLink>
 </section>
 
@@ -57,8 +57,15 @@
 
 @code {
     
-    [Parameter] public string? bookId { get; set; }
-  
+    [Parameter] public int bookId { get; set; }
 
-    
+    private BookModel? bookDetails;
+
+    protected override void OnInitialized()
+    {
+        if (bookId > 0)
+        {
+            bookDetails = BookService.GetBookById(bookId);
+        }
+    }    
 }
