@@ -161,3 +161,16 @@
 - TODO: Add functionality to add the quantity of an item
 - TODO: Add functionality to remove an item from the cart
 - TODO: Add functionality to apply a discount
+
+## Checkout Page
+
+- Users can view and change the shipping address
+- TODO: Add functionality to change shipping address
+- Users can view and change the delivery option
+- TODO: Add functionality to change delivery option
+- Users and view a form to enter their card details
+- TODO : Add functionality to process card payments
+- TODO: Add functionality to alllow users to pay by paypal
+- Users can view their order summary
+- Users can place their order by clicking the "Place Order" button
+- TODO: Add functionality to place an order

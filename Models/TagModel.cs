@@ -12,5 +12,14 @@ namespace BookShop.Models
 
         [StringLength(200, ErrorMessage = "Description cannot exceed 200 characters.")]
         public string Description { get; set; }
+
+        [Required(ErrorMessage = "Please specify if the tag is for books.")]
+        public bool forBooks { get; set; }
+
+        [Required(ErrorMessage = "Please specify if the tag is for authors.")]
+        public bool forAuthors { get; set; }
+
+        [Required(ErrorMessage = "Please specify if the tag is for categories.")]
+        public bool forCategories { get; set; }
     }
 }

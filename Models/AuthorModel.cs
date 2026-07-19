@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookShop.Models
 {
-
     public class AuthorModel
     {
         public int AuthorId { get; set; }
@@ -17,7 +16,7 @@ namespace BookShop.Models
         [StringLength(500, ErrorMessage = "Biography cannot exceed 500 characters.")]
         public string Biography { get; set; }
 
-        public List<TagModel> AuthorTags { get; set; }
+        public List<TagModel> AuthorTags { get; set; } = new();
 
     }
 }
