@@ -1,24 +1,27 @@
+ @inject NavigationManager NavigationManager
+ @rendermode InteractiveServer
+
  <EditForm 
     Model="@searchModel" 
     OnValidSubmit="@HandleSearch" 
     class="@formStyles" 
     FormName="SearchForm"
 >
-    <DataAnnotationsValidator />
+    <DataAnnotationsValidator />    
 
     <div class="@inputsContainerStyles">
-        <InputText class="@inputsTextStyles"
-            placeholder="Author or Book Title"
-            @bind-Value="searchModel.Query" 
-        />
+    <InputText class="@inputsTextStyles"
+        placeholder="Author or Book Title"
+        @bind-Value="searchModel.Query" 
+    />
 
-        <button 
-            type="submit" 
-            class="@buttonStyles"
-        >
-            Search
-        </button>
-    </div>
+    <button 
+        type="submit" 
+        class="@buttonStyles"
+    >
+        Search
+    </button>
+</div>
 
     <div class="text-center">
         <ValidationMessage For="@(() => searchModel.Query)" />
@@ -29,23 +32,24 @@
 
 @code{
 
-    [Parameter]
-    public string? formStyles { get; set; } 
+    [Parameter] public string? formStyles { get; set; } 
 
-    [Parameter]
-    public string? inputsContainerStyles {get; set;}
+    [Parameter] public string? inputsContainerStyles {get; set;}
 
-    [Parameter]
-    public string? inputsTextStyles {get; set;}
+    [Parameter] public string? inputsTextStyles {get; set;}
 
-    [Parameter]
-    public string? buttonStyles {get; set;}
+    [Parameter] public string? buttonStyles {get; set;}
 
     private SearchModel searchModel = new();
 
     private void HandleSearch()
     {
-        //TODO: Handle your search logic here
-        Console.WriteLine($"Searching for: {searchModel.Query}");
+        string? term = searchModel.Query?.Trim();
+
+        if (!string.IsNullOrWhiteSpace(term))
+        {
+            string? encoded = Uri.EscapeDataString(term);
+            NavigationManager.NavigateTo($"/books?SearchTerm={encoded}");
+        }    
     } 
 }

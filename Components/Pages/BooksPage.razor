@@ -1,4 +1,6 @@
 @page "/books"
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager NavigationManager
 @inject IBookService BookService
 
 <PageTitle>Books</PageTitle>
@@ -12,7 +14,7 @@
                 <SearchForm 
                     formStyles="mx-auto" 
                     inputsTextStyles="form-control fs-5 border-success w-100 mb-1"
-                    buttonStyles="btn btn-success text-white fs-5 border-success w-100"
+                    buttonStyles="btn btn-success text-white fs-5 border-success w-100 mt-2"
                     />
             </div>
 
@@ -26,21 +28,54 @@
     <!-- Book List section -->
     <section class="col-9">
         <h1 class="fs-2 text-center pb-4 text-decoration-underline">Explore our Book Collection</h1>
-        <section class="row row-cols-3 justify-content-center">
-            @foreach (var bookDetails in books)
+        @if(books == null || books.Count == 0)
+        {
+            @if(!string.IsNullOrWhiteSpace(searchTerm))
             {
-                <BookCard BookDetails="bookDetails" />
+                <p class="text-center fs-4">No books found for search term: <b>@searchTerm</b></p>
             }
-        </section>
+            else
+            {
+                <p class="text-center fs-4 text-secondary">No books available.</p>
+            }
+        }
+        else
+        {
+           <section class="row row-cols-3 justify-content-center">
+                @foreach (var bookDetails in books)
+                {
+                    <BookCard BookDetails="bookDetails" />
+                }
+            </section>
+        }   
+        @if(!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            <div class="text-center mb-4">
+                <NavLink href="/books" class="btn btn-success text-white fs-5 border-success">View All Books</NavLink>  
+            </div>     
+        }          
     </section>
 </div>
 
 @code{
-private List<BookModel> books;
+    private List<BookModel> books;    
+    private string searchTerm;
 
     protected override void OnInitialized()
     {
-        books = BookService.GetAllBooks();
+        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        var query = QueryHelpers.ParseQuery(uri.Query);
+
+        if (query.TryGetValue("SearchTerm", out var term))
+        {
+
+            searchTerm = term.ToString();
+            books = BookService.GetBooksBySearchParam(searchTerm);
+        }
+        else
+        {
+            books = BookService.GetAllBooks();
+        }
     }
 }
 
@@ -50,13 +85,3 @@ private List<BookModel> books;
 
 
 
-
-
- 
-@code {
-    
-
-  
-
-    
-}
