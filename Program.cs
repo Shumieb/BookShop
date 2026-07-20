@@ -10,6 +10,7 @@ builder.Services.AddSingleton<IBookService, BookService>();
 builder.Services.AddSingleton<IAuthorService, AuthorService>();
 builder.Services.AddSingleton<ICategoryService, CategoryService>();
 builder.Services.AddSingleton<ITagService, TagService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 
 var app = builder.Build();

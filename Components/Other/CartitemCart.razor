@@ -1,3 +1,6 @@
+@using BookShop.Models
+@inject ICartService CartService
+
 <div class="mb-4">
     <div class="shadow border rounded border-success d-flex justify-content-between align-items-center py-2 px-4">
 
@@ -9,9 +12,9 @@
                 style="height: 8rem; width:8rem"
             />
             <div>
-                <p class="fs-5 py-0 my-0">This is a book title.</p>
-                <p class="text-muted fs-5 fst-italic py-0 my-0">by Author Name</p>
-                <p class="fs-5 py-0 my-0">Unit Price: £3.99</p>
+                <p class="fs-5 py-0 my-0">@cartItem.Book.Title</p>
+                <p class="text-muted fs-5 fst-italic py-0 my-0">by @cartItem.Book.Author.AuthorName</p>
+                <p class="fs-5 py-0 my-0">Unit Price: £@cartItem.Book.Price.ToString("F2")</p>
             </div>            
         </div>        
 
@@ -22,7 +25,7 @@
                     -
                 </button>
 
-                <span class="fw-bold fs-5">2</span>
+                <span class="fw-bold fs-5">@cartItem.Quantity</span>
 
                 <button class="btn btn-outline-secondary ms-3 fs-5"
                         @onclick="() => IncreaseQuantity()">
@@ -31,39 +34,42 @@
             </div>
 
             <button class="btn btn-danger px-4"
-                    @onclick="() => RemoveItem()">
+                    @onclick="@RemoveItem">
                 Remove
             </button>
         </div>  
 
         <div class="text-center">
             <p class="fs-5 py-0 my-0 text-muted">Sub-total</p>
-            <p class="fs-5 py-0 my-0">£7.00</p>
+            <p class="fs-5 py-0 my-0">£@((@cartItem.Quantity * @cartItem.Book.Price).ToString("F2"))</p>
         </div>              
     </div>
 </div>
 
 @code{
 
+    [Parameter] public CartItemModel cartItem { get; set; } = new CartItemModel();
+    [Parameter] public EventCallback UpdateCart { get; set; }
+
     private void IncreaseQuantity()
     {
-        //item.Quantity++;
-        //CartService.UpdateCartItem(item);
+        CartService.IncreaseCartItemQuantity(cartItem.Book.BookId);
+        UpdateCart.InvokeAsync();
     }
 
     private void DecreaseQuantity()
     {
-       // if (item.Quantity > 1)
-      //  {
-      //      item.Quantity--;
-            //CartService.UpdateCartItem(item);
-       // }
+       if (cartItem.Quantity > 1)
+        {        
+            CartService.DecreaseCartItemQuantity(cartItem.Book.BookId);
+            UpdateCart.InvokeAsync();
+        }
     }
 
     private void RemoveItem()
     {
-        //CartService.RemoveItem(item.Book.Id);
-        //CartItems.Remove(item);
+        CartService.RemoveItemFromCart(cartItem.Book.BookId);
+        UpdateCart.InvokeAsync();
     }
 
 }

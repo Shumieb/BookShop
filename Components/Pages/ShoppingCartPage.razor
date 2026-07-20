@@ -1,4 +1,5 @@
 ﻿@page "/shopping-cart/{userId}"
+@inject ICartService CartService
 @rendermode InteractiveServer
 @inject NavigationManager Nav
 
@@ -6,13 +7,28 @@
 
 <div class="w-75 mx-auto">
     <h3 class="text-center text-decoration-underline mb-2">Your Shopping Cart</h3>
-    <p class="text-center mb-4 fs-5">You have <span class="fw-bold text-success">10</span> items in your cart.</p>
+
+    @if(CartItems.Count > 0)
+    {
+        <p class="text-center mb-4 fs-5">You have <span class="fw-bold text-success">@CartItems.Count</span> items in your cart.</p>
+    }
+   
 
     <div class="mb-3">
-        <CartitemCart/>
-        <CartitemCart/>
-        <CartitemCart/>
-        <CartitemCart/>   
+        @if(CartItems.Count == 0)
+        {
+            <p class="text-center fs-4 text-secondary my-5">Your Shopping Basket is empty.</p>
+        }
+        else
+        {
+            @foreach (CartItemModel item in CartItems)
+            {
+                <CartitemCart 
+                    CartItem="item" 
+                    UpdateCart="UpdateCart"
+                />
+            }
+        }
     </div>
 
     <div class="d-flex gap-3 justify-content-between mt-4 py-2 mb-4">
@@ -59,7 +75,7 @@
 </div>
 
 @code {
-    public List<CartItem> CartItems { get; set; } = new();
+    public List<CartItemModel> CartItems { get; set; } 
 
     public string DiscountCode { get; set; } = string.Empty;
     public decimal DiscountAmount { get; set; }
@@ -68,9 +84,15 @@
 
     [Parameter] public string? userId {get; set;}  
 
-    protected override async Task OnInitializedAsync()
+    protected override Task OnInitializedAsync()
     {
-        //CartItems = await CartService.GetCartItems();
+        CartItems = CartService.GetAllCartItems();
+        return Task.CompletedTask;
+    }
+
+    private void UpdateCart()
+    {
+        CartItems = CartService.GetAllCartItems();
     }
 
     private void ApplyDiscount()

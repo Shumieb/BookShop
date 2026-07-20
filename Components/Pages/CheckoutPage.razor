@@ -162,7 +162,7 @@
 
     [Parameter] public string? userId { get; set; }
 
-    public List<CartItem> CartItems { get; set; } = new();
+    public List<CartItemModel> CartItems { get; set; } = new();
     public ShippingAddressModel SelectedAddress { get; set; } = new();
 
     public string PaymentMethod { get; set; } = "Card";
